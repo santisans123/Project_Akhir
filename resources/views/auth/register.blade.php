@@ -71,6 +71,7 @@
 
             <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
+                <input type="hidden" value="{{Session::get('uid')}}" name="userid" id="userid">
                 <button type="submit" id="add-submit" class="btn btn-primary">
                   {{ __('Register') }}
                 </button>
@@ -101,22 +102,16 @@
   const app = firebase.initializeApp(firebaseConfig);
 
   var database = firebase.database();
-
-  var lastId=0;
-    
+  
       // add data
       $('#add-submit').on('click', function() {
         var formData = $('#add-post').serializeArray();
-        var createId = Number(lastId) + 1;
 
-        firebase.database().ref('profile/' + createId).set({
-          name: formData[0].value,
-          email: formData[1].value,
-          password: formData[2].value
+        firebase.database().ref('profile/').push({
+          password: formData[0].value,
+          name: formData[1].value,
+          email: formData[2].value
         });
-
-        // Reassign lastID value
-        lastId = createId;
 
   });
 </script>
