@@ -102,9 +102,8 @@
 
   var database = firebase.database();
 
-  var lastId;
-  $.each(value, function(index, value) {
-    for (lasdId = 0; index + 1; lastId++) {
+  var lastId=0;
+    
       // add data
       $('#add-submit').on('click', function() {
         var formData = $('#add-post').serializeArray();
@@ -118,9 +117,6 @@
 
         // Reassign lastID value
         lastId = createId;
-
-      });
-    }
 
   });
 </script>
