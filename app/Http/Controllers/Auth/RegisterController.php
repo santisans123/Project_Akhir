@@ -36,7 +36,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-     protected $redirectTo = RouteServiceProvider::HOME;
+      protected $redirectTo = RouteServiceProvider::HOME;
     public function __construct(FirebaseAuth $auth) {
        $this->middleware('guest');
        $this->auth = $auth;
@@ -48,12 +48,13 @@ class RegisterController extends Controller
           'password' => ['required', 'string', 'min:8', 'max:12', 'confirmed'],
        ]);
     }
-    protected function register(Request $request) {
+    
+    public function register(Request $request) {
        try {
          $this->validator($request->all())->validate();
          $userProperties = [
             'email' => $request->input('email'),
-            'emailVerified' => false,
+            'emailVerified' => true,
             'password' => $request->input('password'),
             'displayName' => $request->input('name'),
             'disabled' => false,

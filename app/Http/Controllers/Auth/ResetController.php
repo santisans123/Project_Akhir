@@ -26,24 +26,7 @@ class ResetController extends Controller
 
   public function verify_email()
   {
-    $uid = Session::get('uid');
-    $verify = app('firebase.auth')->getUser($uid)->emailVerified;
-    $email = app('firebase.auth')->getUser($uid)->email;
-    if ($email == 'admin@admin.com') {
-      return redirect()->route('datanelayan');
-    }
-
-    if ($verify == 1) {
-        return redirect()->route('datatambak');
-    } else {
-      try {
-        $email = app('firebase.auth')->getUser($uid)->email;
-        $link = app('firebase.auth')->sendEmailVerificationLink($email);
-      } catch (FirebaseException $e) {
-        Session::flash('error', $e->getMessage());
-      }
-      return view("reset.email");
-    }
+    return;
   }
 
   /**

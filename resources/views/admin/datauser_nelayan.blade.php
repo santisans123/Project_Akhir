@@ -17,7 +17,7 @@
             <div class="card-header">
                 Semua Data Tambak
                 <div class="float-end">
-                    <a class="nav-link" href="{{ route('regis') }}"><button type="button" class="btn btn-sm btn-primary">Add User</button></a>
+                    <a class="nav-link" href="{{ route('register') }}"><button type="button" class="btn btn-sm btn-primary">Add User</button></a>
                 </div>
             </div>
             <div class="card-body">

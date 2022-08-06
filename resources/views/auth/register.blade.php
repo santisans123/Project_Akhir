@@ -16,7 +16,7 @@
           </div>
           @endif
 
-          <form method="POST" action="{{ route('register') }}">
+          <form method="POST" action="{{ route('register') }}" id="add-post" tabindex="-1">
             @csrf
 
             <div class="form-group row">
@@ -71,7 +71,7 @@
 
             <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" id="add-submit" class="btn btn-primary">
                   {{ __('Register') }}
                 </button>
               </div>
@@ -82,4 +82,46 @@
     </div>
   </div>
 </div>
+
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+<script type="text/javascript">
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "{{ config('services.firebase.api_key') }}",
+    authDomain: "{{ config('services.firebase.auth_domain') }}",
+    databaseURL: "{{ config('services.firebase.database_url') }}",
+    projectId: "{{ config('services.firebase.project_id') }}",
+    storageBucket: "{{ config('services.firebase.storage_bucket') }}",
+    messagingSenderId: "{{ config('services.firebase.messaging_sender_id') }}",
+    appId: "{{ config('services.firebase.app_id') }}"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+
+  var database = firebase.database();
+
+  var lastId;
+  $.each(value, function(index, value) {
+    for (lasdId = 0; index + 1; lastId++) {
+      // add data
+      $('#add-submit').on('click', function() {
+        var formData = $('#add-post').serializeArray();
+        var createId = Number(lastId) + 1;
+
+        firebase.database().ref('profile/' + createId).set({
+          name: formData[0].value,
+          email: formData[1].value,
+          password: formData[2].value
+        });
+
+        // Reassign lastID value
+        lastId = createId;
+
+      });
+    }
+
+  });
+</script>
 @endsection

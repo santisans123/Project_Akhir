@@ -57,7 +57,11 @@ class LoginController extends Controller
           Session::put('uid',$loginuid);
 
           $result = Auth::login($user);
-          return redirect($this->redirectPath());
+          $email = app('firebase.auth')->getUser(Session::get('uid'))->email;
+          if ($email == 'admin@admin.com')
+            return redirect('datanelayan');
+          else
+            return redirect($this->redirectPath());
        } catch (FirebaseException $e) {
           throw ValidationException::withMessages([$this->username() => [trans('auth.failed')],]);
        }
