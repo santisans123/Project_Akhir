@@ -5,7 +5,7 @@
 <div class="page-breadcrumb">
     <div class="row align-items-center">
         <div class="col-5">
-            <h3 class="page-title mb-3">Data Tambak</h3>
+            <h3 class="page-title mb-3">Data User</h3>
         </div>
     </div>
 </div>
@@ -15,7 +15,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                Semua Data Tambak
+                Semua Data User
                 <div class="float-end">
                     <a class="nav-link" href="{{ route('register') }}"><button type="button" class="btn btn-sm btn-primary">Add User</button></a>
                 </div>
@@ -27,10 +27,20 @@
                             <th scope="col">ID</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Keterangan</th>
+
                         </tr>
                     </thead>
                     <tbody id="table-list">
-
+                        <tr>
+                            <th scope="col">1</th>
+                            <th scope="col">1</th>
+                            <th scope="col">1</th>
+                            <th scope="col">
+                                <a href="" class="btn btn-primary">Edit</a>
+                                <a href="" class="btn btn-danger">Delete</a>
+                            </th>
+                        </tr>
                     </tbody>
                 </table>
             </div>
