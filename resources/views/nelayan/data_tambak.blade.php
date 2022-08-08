@@ -163,6 +163,7 @@
         var value = snapshot.val();
         var htmls = [];
         var no =1;
+
         $.each(value, function(index, value) {
             if (value&&value.userid==="{{Session::get('uid')}}") {
                 htmls.push('<tr>\

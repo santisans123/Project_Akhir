@@ -153,13 +153,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('datatambak') }}" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('datanelayan') }}" aria-expanded="false">
                                 <i class="mdi mdi-plus"></i>
                                 <span class="hide-menu">Tambah User</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="table-basic.html" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('monitortambak') }}" aria-expanded="false">
                                 <i class="mdi mdi-water"></i>
                                 <span class="hide-menu">Tambak</span>
                             </a>

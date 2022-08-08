@@ -44,6 +44,10 @@ Route::get('/dashboard', function () {
     return view('layouts/dashboard');
 });
 
+Route::get('/monitor_tambak', function () {
+    return view('admin/monitor_tambak');
+})->name('monitortambak');
+
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])
     ->middleware('checkRole')
     ->withoutMiddleware(['guest'])
@@ -53,7 +57,9 @@ Route::post('register', [RegisterController::class, 'register'])
     ->middleware('checkRole')
     ->withoutMiddleware(['guest']);
 
-Route::get('/datatambak', [App\Http\Controllers\HomeController::class, 'index'])->name('datatambak')->middleware('user','fireauth');
+Route::get('/datatambak', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('datatambak')
+    ->middleware('user','fireauth');
 
 // Route::get('/home/customer', [App\Http\Controllers\HomeController::class, 'customer'])->middleware('user','fireauth');
 
