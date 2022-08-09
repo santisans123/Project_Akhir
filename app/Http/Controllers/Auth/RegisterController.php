@@ -28,32 +28,34 @@ class RegisterController extends Controller
     |
     */
 
-   use RegistersUsers;
-   protected $auth;
 
-   /**
-    * Where to redirect users after registration.
-    *
-    * @var string
-    */
-   protected $redirectTo = RouteServiceProvider::HOME;
-   public function __construct(FirebaseAuth $auth)
-   {
-      $this->middleware('guest');
-      $this->auth = $auth;
-   }
-   protected function validator(array $data)
-   {
-      return Validator::make($data, [
-         'name' => ['required', 'string', 'max:255'],
-         'email' => ['required', 'string', 'email', 'max:255'],
-         'password' => ['required', 'string', 'min:8', 'max:12', 'confirmed'],
-      ]);
-   }
+    use RegistersUsers;
+    protected $auth;
+	private $database;
 
-   public function register(Request $request)
-   {
-      try {
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+      protected $redirectTo = RouteServiceProvider::HOME;
+    public function __construct(FirebaseAuth $auth) {
+       $this->middleware('guest');
+       $this->auth = $auth;
+		
+	   $this->database = \App\Services\FirebaseService::connect();	
+    }
+    protected function validator(array $data) {
+       return Validator::make($data, [
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255'],
+          'password' => ['required', 'string', 'min:8', 'max:12', 'confirmed'],
+       ]);
+    }
+    
+    public function register(Request $request) {
+       try {
+
          $this->validator($request->all())->validate();
          $userProperties = [
             'email' => $request->input('email'),
@@ -63,6 +65,14 @@ class RegisterController extends Controller
             'disabled' => false,
          ];
          $createdUser = $this->auth->createUser($userProperties);
+		 $this->database->getReference('profile/')
+			->set([
+				'name' => $request->input('name'),
+				'email' => $request->input('email'),
+				'password' => $request->input('password'),
+				'user_id' => $createdUser->uid    
+			]);
+
          return redirect()->route('login');
       } catch (FirebaseException $e) {
          Session::flash('error', $e->getMessage());
