@@ -68,7 +68,7 @@ class RegisterController extends Controller
 				'name' => $request->input('name'),
 				'email' => $request->input('email'),
 				'password' => $request->input('password'),
-				'user_id' => $createdUser      
+				'user_id' => $createdUser->uid    
 			]);
 
          return redirect()->route('login');
