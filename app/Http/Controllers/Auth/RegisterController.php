@@ -28,34 +28,7 @@ class RegisterController extends Controller
     |
     */
 
-<<<<<<< HEAD
-   use RegistersUsers;
-   protected $auth;
 
-   /**
-    * Where to redirect users after registration.
-    *
-    * @var string
-    */
-   protected $redirectTo = RouteServiceProvider::HOME;
-   public function __construct(FirebaseAuth $auth)
-   {
-      $this->middleware('guest');
-      $this->auth = $auth;
-   }
-   protected function validator(array $data)
-   {
-      return Validator::make($data, [
-         'name' => ['required', 'string', 'max:255'],
-         'email' => ['required', 'string', 'email', 'max:255'],
-         'password' => ['required', 'string', 'min:8', 'max:12', 'confirmed'],
-      ]);
-   }
-
-   public function register(Request $request)
-   {
-      try {
-=======
     use RegistersUsers;
     protected $auth;
 	private $database;
@@ -82,7 +55,7 @@ class RegisterController extends Controller
     
     public function register(Request $request) {
        try {
->>>>>>> upstream/sandy
+
          $this->validator($request->all())->validate();
          $userProperties = [
             'email' => $request->input('email'),
