@@ -65,7 +65,7 @@ class RegisterController extends Controller
             'disabled' => false,
          ];
          $createdUser = $this->auth->createUser($userProperties);
-		 $this->database->getReference('profile/')
+		   $this->database->getReference('profile/'.$request->input('email'))
 			->set([
 				'name' => $request->input('name'),
 				'email' => $request->input('email'),
