@@ -30,6 +30,7 @@ class RegisterController extends Controller
 
     use RegistersUsers;
     protected $auth;
+	private $database;
 
     /**
      * Where to redirect users after registration.
@@ -40,6 +41,8 @@ class RegisterController extends Controller
     public function __construct(FirebaseAuth $auth) {
        $this->middleware('guest');
        $this->auth = $auth;
+		
+	   $this->database = \App\Services\FirebaseService::connect();	
     }
     protected function validator(array $data) {
        return Validator::make($data, [
@@ -60,6 +63,14 @@ class RegisterController extends Controller
             'disabled' => false,
          ];
          $createdUser = $this->auth->createUser($userProperties);
+		 $this->database->getReference('profile/')
+			->set([
+				'name' => $request->input('name'),
+				'email' => $request->input('email'),
+				'password' => $request->input('password'),
+				'user_id' => $createdUser      
+			]);
+
          return redirect()->route('login');
        } catch (FirebaseException $e) {
           Session::flash('error', $e->getMessage());

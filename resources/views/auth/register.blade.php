@@ -88,31 +88,29 @@
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 <script type="text/javascript">
   // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "{{ config('services.firebase.api_key') }}",
-    authDomain: "{{ config('services.firebase.auth_domain') }}",
-    databaseURL: "{{ config('services.firebase.database_url') }}",
-    projectId: "{{ config('services.firebase.project_id') }}",
-    storageBucket: "{{ config('services.firebase.storage_bucket') }}",
-    messagingSenderId: "{{ config('services.firebase.messaging_sender_id') }}",
-    appId: "{{ config('services.firebase.app_id') }}"
-  };
-
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-
-  var database = firebase.database();
-  
-      // add data
-      $('#add-submit').on('click', function() {
-        var formData = $('#add-post').serializeArray();
-
-        firebase.database().ref('profile/').push({
-          password: formData[0].value,
-          name: formData[1].value,
-          email: formData[2].value
-        });
-
-  });
+//  const firebaseConfig = {
+//    apiKey: "{{ config('services.firebase.api_key') }}",
+//    authDomain: "{{ config('services.firebase.auth_domain') }}",
+//    databaseURL: "{{ config('services.firebase.database_url') }}",
+//    projectId: "{{ config('services.firebase.project_id') }}",
+//    storageBucket: "{{ config('services.firebase.storage_bucket') }}",
+//    messagingSenderId: "{{ config('services.firebase.messaging_sender_id') }}",
+//    appId: "{{ config('services.firebase.app_id') }}"
+//  };
+//
+//  // Initialize Firebase
+//  const app = firebase.initializeApp(firebaseConfig);
+//  var database = firebase.database();
+//      // add data
+//      $('#add-submit').on('click', function() {
+//		var formData = $('#add-post').serializeArray();
+//        if($('#password').val() && $('#password').val() == $('#password-confirm').val())
+//        firebase.database().ref('profile/').push({
+//          password: formData[0].value,
+//          name: formData[1].value,
+//          email: formData[2].value
+//        });
+//
+//  });
 </script>
 @endsection
