@@ -17,7 +17,8 @@
                 <div class="float-end">
                     <a href="{{ route('datatambak') }}">
                         <button type="button" class="btn btn-sm btn-secondary">
-                            Back</button>
+                            Back
+                        </button>
                     </a>
                 </div>
                 <div class="col-5">
@@ -49,10 +50,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">alamat</th>
-                                    <th scope="col">luas</th>
                                     <th scope="col">Nama Kolam</th>
-                                    <th scope="col">Gram Pakan</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -75,20 +73,8 @@
                     <div class="modal-body">
                         <form id="add-post" method="post">
                             <div class="mb-3">
-                                <label for="alamat" class="form-label">Alamat</label>
-                                <textarea class="form-control" id="alamat" name="alamat"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="luas" class="form-label">Luas kolam dalam hektar(ha)</label>
-                                <input type="number" class="form-control" name="luas" id="luas">
-                            </div>
-                            <div class="mb-3">
-                                <label for="namakolam" class="form-label">Jenis Pakan</label>
-                                <input type="text" class="form-control" id="namakolam" name="namakolam">
-                            </div>
-                            <div class="mb-3">
-                                <label for="gramPakan" class="form-label">Gram Pakan</label>
-                                <input type="number" class="form-control" id="gramPakan" name="gramPakan">
+                                <label for="nama_kolam" class="form-label">Nama Kolam</label>
+                                <input type="text" class="form-control" id="nama_kolam" name="nama_kolam">
                             </div>
                             <input type="hidden" class="form-control" value="{{$idtambak}}" name="idtambak" id="idtambak">
                             <button type="button" id="add-submit" class="btn btn-primary">Submit</button>
@@ -109,20 +95,8 @@
                     <div class="modal-body">
                         <form id="update-post" method="post">
                             <div class="mb-3">
-                                <label for="update-alamat" class="form-label">alamat</label>
-                                <textarea class="form-control" name="alamat" id="update-alamat"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="update-luas" class="form-label">luas</label>
-                                <input type="number" class="form-control" name="luas" id="update-luas">
-                            </div>
-                            <div class="mb-3">
-                                <label for="update-namakolam" class="form-label">Jenis Pakan</label>
-                                <input type="text" class="form-control" name="namakolam" id="update-namakolam">
-                            </div>
-                            <div class="mb-3">
-                                <label for="update-gramPakan" class="form-label">Gram Pakan</label>
-                                <input type="number" class="form-control" name="gramPakan" id="update-gramPakan">
+                                <label for="update-nama_kolam" class="form-label">Nama Kolam</label>
+                                <textarea class="form-control" name="nama_kolam" id="update-nama_kolam"></textarea>
                             </div>
                             <input type="hidden" class="form-control" value="{{$idtambak}}" name="idtambak" id="update-idtambak">
                             <button type="button" id="update-button" class="btn btn-primary">Submit</button>
@@ -176,16 +150,15 @@
             database.ref("kolam").on('value', function(snapshot) {
                 var value = snapshot.val();
                 var htmls = [];
+                var no = 1;
                 $.each(value, function(index, value) {
-                    if (value&&value.idtambak==='{{$idtambak}}') {
+                    if (value && value.idtambak === '{{$idtambak}}') {
                         console.log(index);
                         htmls.push('<tr>\
-                        <td>' + index + '</td>\
-                        <td>' + value.alamat + '</td>\
-                        <td>' + value.luas + '</td>\
-                        <td>' + value.namakolam + '</td>\
-                        <td>' + value.gramPakan + '</td>\
+                        <td>' + no++ + '</td>\
+                        <td>' + value.nama_kolam + '</td>\
                         <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
+                        <a class="btn btn-primary" href="../../dataalat/'+ index +'" >Detail Kolam</a>\
                         <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
                     </tr>');
                     }
@@ -200,11 +173,8 @@
                 var createId = Number(lastId) + 1;
 
                 firebase.database().ref('kolam/' + createId).set({
-                    alamat: formData[0].value,
-                    luas: formData[1].value,
-                    namakolam: formData[2].value,
-                    gramPakan: formData[3].value,
-                    idtambak: formData[4].value
+                    nama_kolam: formData[0].value,
+                    idtambak: formData[1].value
                 });
 
                 // Reassign lastID value
@@ -219,10 +189,7 @@
                 updateID = $(this).attr('data-id');
                 firebase.database().ref('kolam/' + updateID).on('value', function(snapshot) {
                     var values = snapshot.val();
-                    $('#update-alamat').val(values.alamat);
-                    $('#update-luas').val(values.luas);
-                    $('#update-namakolam').val(values.namakolam);
-                    $('#update-gramPakan').val(values.gramPakan);
+                    $('#update-nama_kolam').val(values.nama_kolam);
                     $('#update-idtambak').val(values.idtambak);
                 });
             });
@@ -231,11 +198,8 @@
             $('#update-button').on('click', function() {
                 var values = $("#update-post").serializeArray();
                 var postData = {
-                    alamat: values[0].value,
-                    luas: values[1].value,
-                    namakolam: values[2].value,
-                    gramPakan: values[3].value,
-                    idtambak: values[4].value
+                    nama_kolam: values[0].value,
+                    idtambak: values[1].value
                 };
 
                 var updatedPost = {};

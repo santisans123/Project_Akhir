@@ -17,7 +17,7 @@
             <div class="card-header">
                 Semua Data Tambak
                 <div class="float-end">
-                    <a class="nav-link" href="{{ route('regis') }}"><button type="button" class="btn btn-sm btn-primary">Add User</button></a>
+                    <a class="nav-link" href="{{ route('register') }}"><button type="button" class="btn btn-sm btn-primary">Add User</button></a>
                 </div>
             </div>
             <div class="card-body">
@@ -25,7 +25,9 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">alamat</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
                         </tr>
                     </thead>
                     <tbody id="table-list">
@@ -120,6 +122,26 @@
         appId: "{{ config('services.firebase.app_id') }}"
     };
 
+    // const functions = require('firebase-functions');
+    // const admin = require('firebase-admin');
+
+    // admin.initializeApp();
+
+    // const auth = admin.auth();
+
+    // const getAllUsers = (req, res) => {
+    //     const maxResults = 1; // optional arg.
+
+    //     auth.listUsers(maxResults).then((userRecords) => {
+    //         userRecords.users.forEach((user) => console.log(user.toJSON()));
+    //         res.end('Retrieved users list successfully.');
+    //     }).catch((error) => console.log(error));
+    // };
+
+    // module.exports = {
+    //     api: functions.https.onRequest(getAllUsers),
+    // };
+
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
 
@@ -127,75 +149,59 @@
     // var databaseauth = firebase.auth();
 
     var lastId = 0;
-    
-    export const auth = getAuth();
 
-    getAuth()
-        .getUser(uid)
-        .then((userRecord) => {
-            // See the UserRecord reference doc for the contents of userRecord.
-            console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
-        })
-        .catch((error) => {
-            console.log('Error fetching user data:', error);
-        });
+    // export const auth = getAuth();
 
-    // const listAllUsers = (nextPageToken) => {
-    //     // List batch of users, 1000 at a time.
-    //     getAuth()
-    //         .listUsers(1000, nextPageToken)
-    //         .then((listUsersResult) => {
-    //             listUsersResult.users.forEach((userRecord) => {
-    //                 console.log('user', userRecord.toJSON());
-    //             });
-    //             if (listUsersResult.pageToken) {
-    //                 // List next batch of users.
-    //                 listAllUsers(listUsersResult.pageToken);
-    //             }
+    // getAuth()
+    //     .getUser(uid)
+    //     .then((userRecord) => {
+    //         // See the UserRecord reference doc for the contents of userRecord.
+    //         console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
+    //     })
+    //     .catch((error) => {
+    //         console.log('Error fetching user data:', error);
+    //     });
+
+
+    // function ListAllUsers(nextPageToken) {
+    //     // List Batch Of Users, 1000 At A Time.
+    //     Admin.auth().listUsers(1000, NextPageToken)
+    //         .then(function(listUsersResult) {
+    //             ListUsersResult.users.forEach(function(userRecord) {
+    //                 Console.log('user', UserRecord.toJSON());
+    //             })
+    //             If(listUsersResult.pageToken) 
+    //                 // List Next Batch Of Users.
+    //                 ListAllUsers(listUsersResult.pageToken);
+
     //         })
-    //         .catch((error) => {
-    //             console.log('Error listing users:', error);
+    //         .catch(function(error) {
+    //             Console.log('Error Listing Users:', Error);
     //         });
-    // };
-    // Start listing users from the beginning, 1000 at a time.
-    // listAllUsers();
+    // }
+    // // Start Listing Users From The Beginning, 1000 At A Time.
+    // ListAllUsers();
 
-    // // get post data
-    // database.ref("profile").on('value', function(snapshot) {
-    //     var value = snapshot.val();
-    //     var htmls = [];
-    //     $.each(value, function(index, value) {
-    //         if (value) {
-    //             htmls.push('<tr>\
-    //                     <td>' + index + '</td>\
-    //                     <td>' + value.alamat + '</td>\
-    //                     <td>' + value.notlp + '</td>\
-    //                     <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
-    //                     <a class="btn btn-primary" href="datakolam" >+ Kolam</a>\
-    //                     <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
-    //                 </tr>');
-    //         }
-    //         lastId = index;
-    //     });
-    //     $('#table-list').html(htmls);
-    // });
-
-
-    // // add data
-    // $('#add-submit').on('click', function() {
-    //     var formData = $('#add-post').serializeArray();
-    //     var createId = Number(lastId) + 1;
-
-    //     firebase.database().ref('profile/' + createId).set({
-    //         alamat: formData[0].value,
-    //         notlp: formData[1].value,
-    //     });
-
-    //     // Reassign lastID value
-    //     lastId = createId;
-    //     $("#add-post")[0].reset();
-    //     $("#add-modal").modal('hide');
-    // });
+    // get post data
+    database.ref("profile").on('value', function(snapshot) {
+        var value = snapshot.val();
+        var htmls = [];
+        var no = 1;
+        $.each(value, function(index, value) {
+            if (value) {
+                htmls.push('<tr>\
+                        <td>' + no++ + '</td>\
+                        <td>' + value.name + '</td>\
+                        <td>' + value.email + '</td>\
+                        <td>' + value.password + '</td>\
+                        <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
+                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
+                    </tr>');
+            }
+            lastId = index;
+        });
+        $('#table-list').html(htmls);
+    });
 
     // // update modal
     // var updateID = 0;

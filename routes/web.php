@@ -38,15 +38,30 @@ Route::get('/datanelayan', function () {
     return view('admin/datauser_nelayan');
 })->name('datanelayan');
 
+Route::get('/data_list_alat', function () {
+    return view('nelayan/data_listalat');
+})->name('listalat');
+
+Route::get('dataalat/{id_kolam}', function ($id_kolam) {
+    return view('nelayan/data_alat',['id_kolam'=>$id_kolam]);
+})->name('dataalat');
+
 Route::get('/dashboard', function () {
     return view('layouts/dashboard');
 });
+
+Route::get('/monitor_tambak', function () {
+    return view('admin/monitor_tambak');
+})->name('monitortambak');
 
 Route::get('/regis', function () {
     return view('auth/register');
 })->name('regis');
 
-Route::get('/datatambak', [App\Http\Controllers\HomeController::class, 'index'])->name('datatambak')->middleware('user','fireauth');
+Route::get('/datatambak', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('datatambak')
+    ->middleware('user','fireauth');
+
 
 // Route::get('/home/customer', [App\Http\Controllers\HomeController::class, 'customer'])->middleware('user','fireauth');
 
