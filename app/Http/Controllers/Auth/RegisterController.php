@@ -63,12 +63,12 @@ class RegisterController extends Controller
             'disabled' => false,
          ];
          $createdUser = $this->auth->createUser($userProperties);
-		   $this->database->getReference('profile/'.$request->input('email'))
-			->set([
-				'name' => $request->input('name'),
-				'email' => $request->input('email'),
-				'password' => $request->input('password'),
-				'user_id' => $createdUser->uid    
+		   $this->database->getReference('profile')
+            ->push([
+               'name' => $request->input('name'),
+               'email' => $request->input('email'),
+               'password' => $request->input('password'),
+				   'user_id' => $createdUser->uid
 			]);
 
          return redirect()->route('login');

@@ -86,7 +86,7 @@
     appId: "1:992650486283:web:29849de604ebdd0fb2dd0e",
     measurementId: "G-JSNCMEDM9D"
   };
-  firebase.initializeApp(config);
+  firebase.initializeApp(firebaseConfig);
   var facebookProvider = new firebase.auth.FacebookAuthProvider();
   var googleProvider = new firebase.auth.GoogleAuthProvider();
   var facebookCallbackLink = '/login/facebook/callback';
