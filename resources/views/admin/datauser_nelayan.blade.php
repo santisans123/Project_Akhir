@@ -22,10 +22,12 @@
             </div>
             <div class="card-body">
                 <table class="table table-hover">
-                    <thead>
+                <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">alamat</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
                         </tr>
                     </thead>
                     <tbody id="table-list">
@@ -126,59 +128,27 @@
     var database = firebase.database();
     // var databaseauth = firebase.auth();
 
-    var lastId = 0;
-    
-    export const auth = getAuth();
-
-    getAuth()
-        .getUser(uid)
-        .then((userRecord) => {
-            // See the UserRecord reference doc for the contents of userRecord.
-            console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
-        })
-        .catch((error) => {
-            console.log('Error fetching user data:', error);
+    var lastId = 0;    
+    // get profile data
+    database.ref("profile").on('value', function(snapshot) {
+        var value = snapshot.val();
+        var htmls = [];
+        $.each(value, function(index, value) {
+            if (value) {
+                htmls.push('<tr>\
+                        <td>' + index + '</td>\
+                        <td>' + value.name + '</td>\
+                        <td>' + value.email + '</td>\
+                        <td>' + value.password + '</td>\
+                        <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
+                        <a class="btn btn-primary" href="datakolam" >+ Kolam</a>\
+                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
+                    </tr>');
+            }
+            lastId = index;
         });
-
-    // const listAllUsers = (nextPageToken) => {
-    //     // List batch of users, 1000 at a time.
-    //     getAuth()
-    //         .listUsers(1000, nextPageToken)
-    //         .then((listUsersResult) => {
-    //             listUsersResult.users.forEach((userRecord) => {
-    //                 console.log('user', userRecord.toJSON());
-    //             });
-    //             if (listUsersResult.pageToken) {
-    //                 // List next batch of users.
-    //                 listAllUsers(listUsersResult.pageToken);
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log('Error listing users:', error);
-    //         });
-    // };
-    // Start listing users from the beginning, 1000 at a time.
-    // listAllUsers();
-
-    // // get post data
-    // database.ref("profile").on('value', function(snapshot) {
-    //     var value = snapshot.val();
-    //     var htmls = [];
-    //     $.each(value, function(index, value) {
-    //         if (value) {
-    //             htmls.push('<tr>\
-    //                     <td>' + index + '</td>\
-    //                     <td>' + value.alamat + '</td>\
-    //                     <td>' + value.notlp + '</td>\
-    //                     <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
-    //                     <a class="btn btn-primary" href="datakolam" >+ Kolam</a>\
-    //                     <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
-    //                 </tr>');
-    //         }
-    //         lastId = index;
-    //     });
-    //     $('#table-list').html(htmls);
-    // });
+        $('#table-list').html(htmls);
+    });
 
 
     // // add data
@@ -231,13 +201,13 @@
     //     $('#post-id').val(id);
     // });
 
-    // // delete post
-    // $('#delete-button').on('click', function() {
-    //     var id = $('#post-id').val();
-    //     firebase.database().ref('profile/' + id).remove();
+    // delete post
+    $('#delete-button').on('click', function() {
+        var id = $('#post-id').val();
+        firebase.database().ref('profile/' + id).remove();
 
-    //     $('#post-id').val('');
-    //     $("#delete-modal").modal('hide');
-    // });
+        $('#post-id').val('');
+        $("#delete-modal").modal('hide');
+    });
 </script>
 @endsection
