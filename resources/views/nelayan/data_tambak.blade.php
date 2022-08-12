@@ -28,8 +28,6 @@
                             <th scope="col">ID Alat</th>
                             <th scope="col">alamat</th>
                             <th scope="col">namatambak</th>
-                            <th scope="col">Jenis Pakan</th>
-                            <th scope="col">Gram Pakan</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -166,6 +164,13 @@
         });
         $('#table-list').html(htmls);
     });
+    $(document).ready(function() {
+    var table = $('#table-list').DataTable( {
+        responsive: true
+    } );
+ 
+    new $.fn.dataTable.FixedHeader( table );
+} );
 
     // add data
     $('#add-submit').on('click', function() {

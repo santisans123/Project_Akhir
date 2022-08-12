@@ -50,8 +50,8 @@ Route::get('dataalat/{id_hardware}/{id_kolam}', function ($id_hardware, $id_kola
     return view('nelayan/data_alat',['id_kolam'=>$id_kolam,], ['id_hardware'=>$id_hardware]);
 })->name('dataalat');
 
-Route::get('/dashboard', function () {
-    return view('layouts/dashboard');
+Route::get('/table', function () {
+    return view('table');
 });
 
 Route::get('/monitor_tambak', function () {

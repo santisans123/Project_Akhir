@@ -21,6 +21,7 @@
                         </button>
                     </a>
                 </div>
+                    <h3 class="page-title mb-3" id="nama-tambak">Data kolam</h3>
                 <div class="col-5">
                     <h3 class="page-title mb-3">Data kolam</h3>
                 </div>
@@ -198,13 +199,24 @@
                         <td>' + value.kedalaman + '</td>\
                         <td>' + value.noted + '</td>\
                         <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
-                        <a class="btn btn-primary" href="../../dataalat/'+ value.id_hardware +'/' + value.id_kolam + '" >Detail Kolam</a>\
+                        <a class="btn btn-primary" href="../../dataalat/' + value.id_hardware + '/' + value.id_kolam + '" >Detail Kolam</a>\
                         <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
                     </tr>');
                     }
                     lastId = index;
                 });
                 $('#table-list').html(htmls);
+            });
+            // post nama Tambak
+            database.ref("tambak").on('value', function(snapshot) {
+                var value = snapshot.val();
+                var htmls = [];
+                $.each(value, function(index, value) {
+                    if (value && value.id_hardware === '{{$id_hardware}}') {
+                        htmls.push('' + value.namatambak + ' (' + value.id_hardware + ')');
+                    }
+                });
+                $('#nama-tambak').html(htmls);
             });
 
             // add data
