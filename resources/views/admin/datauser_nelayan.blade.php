@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 {{-- delete modal --}}
 <div class="modal fade" id="delete-modal" tabindex="-1">
@@ -107,8 +107,9 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 <script type="text/javascript">
     // Your web app's Firebase configuration
@@ -123,8 +124,7 @@
     };
 
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-
+    firebase.initializeApp(firebaseConfig);
     var database = firebase.database();
     // var databaseauth = firebase.auth();
 
@@ -142,7 +142,7 @@
                         <td>' + value.password + '</td>\
                         <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
                         <a class="btn btn-primary" href="datakolam" >+ Kolam</a>\
-                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
+                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-uid="'+value.user_id+'" data-id="' + index + '">Delete</a></td>\
                     </tr>');
             }
             lastId = index;
@@ -151,7 +151,7 @@
     });
 
 
-    // // add data
+    // add data
     // $('#add-submit').on('click', function() {
     //     var formData = $('#add-post').serializeArray();
     //     var createId = Number(lastId) + 1;
@@ -195,18 +195,29 @@
     //     $("#update-post")[0].reset();
     // });
 
-    // // delete modal
-    // $("body").on('click', '.delete-data', function() {
-    //     var id = $(this).attr('data-id');
-    //     $('#post-id').val(id);
-    // });
+    // delete modal
+    $("body").on('click', '.delete-data', function() {
+        var id = $(this).attr('data-id');
+        var uid = $(this).attr('data-uid');
+        $('#post-id').val(id);
+        $('#post-uid').val(uid);
+    });
 
     // delete post
     $('#delete-button').on('click', function() {
         var id = $('#post-id').val();
+        var uid = $('#post-uid').val();
+        firebase.auth().deleteUser(uid)
+        .then(function() {
+            console.log('Successfully deleted user', uid);
+        })
+        .catch(function(error) {
+            console.log('Error deleting user:', error);
+        });
         firebase.database().ref('profile/' + id).remove();
 
         $('#post-id').val('');
+        $('#post-uid').val('');
         $("#delete-modal").modal('hide');
     });
 </script>
