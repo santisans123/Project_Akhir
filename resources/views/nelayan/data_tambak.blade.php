@@ -24,10 +24,10 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">No</th>
                             <th scope="col">ID Alat</th>
                             <th scope="col">alamat</th>
-                            <th scope="col">luas</th>
+                            <th scope="col">namatambak</th>
                             <th scope="col">Jenis Pakan</th>
                             <th scope="col">Gram Pakan</th>
                             <th scope="col">Action</th>
@@ -60,16 +60,8 @@
                         <textarea class="form-control" id="alamat" name="alamat"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="luas" class="form-label">Luas Tambak dalam hektar(ha)</label>
-                        <input type="number" class="form-control" name="luas" id="luas">
-                    </div>
-                    <div class="mb-3">
-                        <label for="jenisPakan" class="form-label">Jenis Pakan</label>
-                        <input type="text" class="form-control" id="jenisPakan" name="jenisPakan">
-                    </div>
-                    <div class="mb-3">
-                        <label for="gramPakan" class="form-label">Gram Pakan</label>
-                        <input type="number" class="form-control" id="gramPakan" name="gramPakan">
+                        <label for="namatambak" class="form-label">Nama Tambak</label>
+                        <input type="text" class="form-control" name="namatambak" id="namatambak">
                     </div>
                     <input type="hidden" value="{{Session::get('uid')}}" name="userid" id="userid">
                     <button type="button" id="add-submit" class="btn btn-primary">Submit</button>
@@ -98,16 +90,8 @@
                         <textarea class="form-control" name="alamat" id="update-alamat"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="update-luas" class="form-label">luas</label>
-                        <input type="number" class="form-control" name="luas" id="update-luas">
-                    </div>
-                    <div class="mb-3">
-                        <label for="update-jenisPakan" class="form-label">Jenis Pakan</label>
-                        <input type="text" class="form-control" name="jenisPakan" id="update-jenisPakan">
-                    </div>
-                    <div class="mb-3">
-                        <label for="update-gramPakan" class="form-label">Gram Pakan</label>
-                        <input type="number" class="form-control" name="gramPakan" id="update-gramPakan">
+                        <label for="update-namatambak" class="form-label">Nama Tambak</label>
+                        <input type="text" class="form-control" name="namatambak" id="update-namatambak">
                     </div>
                     <input type="hidden" value="{{Session::get('uid')}}" name="userid" id="update-userid">
                     <button type="button" id="update-button" class="btn btn-primary">Submit</button>
@@ -162,19 +146,19 @@
     database.ref("tambak").on('value', function(snapshot) {
         var value = snapshot.val();
         var htmls = [];
-        var no =1;
+        var no = 1;
+
 
         $.each(value, function(index, value) {
-            if (value&&value.userid==="{{Session::get('uid')}}") {
+            if (value && value.userid === "{{Session::get('uid')}}") {
+                
                 htmls.push('<tr>\
                         <td>' + no++ + '</td>\
                         <td>' + value.id_hardware + '</td>\
                         <td>' + value.alamat + '</td>\
-                        <td>' + value.luas + '</td>\
-                        <td>' + value.jenisPakan + '</td>\
-                        <td>' + value.gramPakan + '</td>\
+                        <td>' + value.namatambak + '</td>\
                         <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
-                        <a class="btn btn-primary" href="datakolam/' + index +'" >+ Kolam</a>\
+                        <a class="btn btn-primary" href="datakolam/' + value.id_hardware + '" >+ Kolam</a>\
                         <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
                     </tr>');
             }
@@ -191,10 +175,8 @@
         firebase.database().ref('tambak/' + createId).set({
             id_hardware: formData[0].value,
             alamat: formData[1].value,
-            luas: formData[2].value,
-            jenisPakan: formData[3].value,
-            gramPakan: formData[4].value,
-            userid: formData[5].value,
+            namatambak: formData[2].value,
+            userid: formData[3].value,
         });
 
         // Reassign lastID value
@@ -209,11 +191,9 @@
         updateID = $(this).attr('data-id');
         firebase.database().ref('tambak/' + updateID).on('value', function(snapshot) {
             var values = snapshot.val();
-            $('#update-alamat').val(values.id_hardware);
+            $('#update-id_hardware').val(values.id_hardware);
             $('#update-alamat').val(values.alamat);
-            $('#update-luas').val(values.luas);
-            $('#update-jenisPakan').val(values.jenisPakan);
-            $('#update-gramPakan').val(values.gramPakan);
+            $('#update-namatambak').val(values.namatambak);
             $('#update-userid').val(values.userid);
         });
     });
@@ -224,10 +204,8 @@
         var postData = {
             id_hardware: values[0].value,
             alamat: values[1].value,
-            luas: values[2].value,
-            jenisPakan: values[3].value,
-            gramPakan: values[4].value,
-            userid: values[5].value,
+            namatambak: values[2].value,
+            userid: values[3].value,
         };
 
         var updatedPost = {};

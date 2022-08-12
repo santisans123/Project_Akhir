@@ -30,9 +30,13 @@ Route::get('/admin/adduser', function () {
 
 Auth::routes();
 
-Route::get('/datakolam/{idtambak}', function ($idtambak) {
-    return view('nelayan/data_kolam',['idtambak'=>$idtambak]);
+Route::get('/datakolam/{id_hardware}', function ($id_hardware) {
+    return view('nelayan/data_kolam',['id_hardware'=>$id_hardware]);
 })->name('datakolam');
+
+Route::get('../../datakolam/{id_hardware}', function ($id_hardware) {
+    return view('nelayan/data_kolam',['id_hardware'=>$id_hardware]);
+})->name('backkolam');
 
 Route::get('/datanelayan', function () {
     return view('admin/datauser_nelayan');
@@ -42,8 +46,8 @@ Route::get('/data_list_alat', function () {
     return view('nelayan/data_listalat');
 })->name('listalat');
 
-Route::get('dataalat/{id_kolam}', function ($id_kolam) {
-    return view('nelayan/data_alat',['id_kolam'=>$id_kolam]);
+Route::get('dataalat/{id_hardware}/{id_kolam}', function ($id_hardware, $id_kolam) {
+    return view('nelayan/data_alat',['id_kolam'=>$id_kolam,], ['id_hardware'=>$id_hardware]);
 })->name('dataalat');
 
 Route::get('/dashboard', function () {

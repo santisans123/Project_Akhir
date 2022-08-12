@@ -14,6 +14,14 @@
         <!-- Bread crumb and right sidebar toggle -->
         <div class="page-breadcrumb">
             <div class="row align-items-center">
+                <div class="float-end">
+                    <a href="{{ route('datatambak') }}">
+                        <button type="button" class="btn btn-sm btn-secondary">
+                            Back Dashboard
+                        </button>
+                    </a>
+                </div>
+                <!-- <a href="/backkolam"> <button type="button" class="btn btn-sm btn-secondary">Back </button> </a>' -->
 
                 <div class="col-5">
                     <h3 class="page-title mb-3">Data Alat</h3>
@@ -24,7 +32,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item">Data Alat</li>
-                       
+
                     </ol>
                 </nav>
             </div>
@@ -102,11 +110,11 @@
                 var htmls = [];
                 var no = 1;
                 $.each(value, function(index, value) {
-                    if (value && value.id_kolam === '{{$id_kolam}}') {
+                    if (value && value.id_hardware === '{{$id_hardware}}' && value.id_kolam === '{{$id_kolam}}') {
                         console.log(index);
                         htmls.push('<tr>\
                         <td>' + no++ + '</td>\
-                        <td>' + value.time + ', '+ value.date +' </td>\
+                        <td>' + value.time + ', ' + value.date + ' </td>\
                         <td>' + value.ph + '</td>\
                         <td>' + value.salinitas + '</td>\
                         <td>' + value.suhu + '</td>\

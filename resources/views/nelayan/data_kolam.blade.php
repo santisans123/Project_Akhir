@@ -51,6 +51,10 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Nama Kolam</th>
+                                    <th scope="col">Panjang</th>
+                                    <th scope="col">Lebar</th>
+                                    <th scope="col">Kedalaman</th>
+                                    <th scope="col">Noted</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -76,7 +80,23 @@
                                 <label for="nama_kolam" class="form-label">Nama Kolam</label>
                                 <input type="text" class="form-control" id="nama_kolam" name="nama_kolam">
                             </div>
-                            <input type="hidden" class="form-control" value="{{$idtambak}}" name="idtambak" id="idtambak">
+                            <div class="mb-3">
+                                <label for="panjang" class="form-label">Panjang</label>
+                                <input type="number" class="form-control" id="panjang" name="panjang">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lebar" class="form-label">Lebar</label>
+                                <input type="number" class="form-control" id="lebar" name="lebar">
+                            </div>
+                            <div class="mb-3">
+                                <label for="kedalaman" class="form-label">Kedalaman</label>
+                                <input type="number" class="form-control" id="kedalaman" name="kedalaman">
+                            </div>
+                            <div class="mb-3">
+                                <label for="noted" class="form-label">Catatan</label>
+                                <textarea class="form-control" name="noted" id="noted"></textarea>
+                            </div>
+                            <input type="hidden" class="form-control" value="{{$id_hardware}}" name="id_hardware" id="id_hardware">
                             <button type="button" id="add-submit" class="btn btn-primary">Submit</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </form>
@@ -98,7 +118,23 @@
                                 <label for="update-nama_kolam" class="form-label">Nama Kolam</label>
                                 <textarea class="form-control" name="nama_kolam" id="update-nama_kolam"></textarea>
                             </div>
-                            <input type="hidden" class="form-control" value="{{$idtambak}}" name="idtambak" id="update-idtambak">
+                            <div class="mb-3">
+                                <label for="update-panjang" class="form-label">Panjang</label>
+                                <input type="text" class="form-control" id="update-panjang" name="update-panjang">
+                            </div>
+                            <div class="mb-3">
+                                <label for="update-lebar" class="form-label">Lebar</label>
+                                <input type="text" class="form-control" id="update-lebar" name="update-lebar">
+                            </div>
+                            <div class="mb-3">
+                                <label for="update-kedalaman" class="form-label">Kedalaman</label>
+                                <input type="text" class="form-control" id="update-kedalaman" name="update-kedalaman">
+                            </div>
+                            <div class="mb-3">
+                                <label for="update-noted" class="form-label">Catatan</label>
+                                <textarea class="form-control" name="update-noted" id="update-noted"></textarea>
+                            </div>
+                            <input type="hidden" class="form-control" value="{{$id_hardware}}" name="id_hardware" id="update-id_hardware">
                             <button type="button" id="update-button" class="btn btn-primary">Submit</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </form>
@@ -146,19 +182,23 @@
 
             var lastId = 0;
 
+
             // get post data
             database.ref("kolam").on('value', function(snapshot) {
                 var value = snapshot.val();
                 var htmls = [];
                 var no = 1;
                 $.each(value, function(index, value) {
-                    if (value && value.idtambak === '{{$idtambak}}') {
-                        console.log(index);
+                    if (value && value.id_hardware === '{{$id_hardware}}') {
                         htmls.push('<tr>\
                         <td>' + no++ + '</td>\
                         <td>' + value.nama_kolam + '</td>\
+                        <td>' + value.panjang + '</td>\
+                        <td>' + value.lebar + '</td>\
+                        <td>' + value.kedalaman + '</td>\
+                        <td>' + value.noted + '</td>\
                         <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
-                        <a class="btn btn-primary" href="../../dataalat/'+ index +'" >Detail Kolam</a>\
+                        <a class="btn btn-primary" href="../../dataalat/'+ value.id_hardware +'/' + value.id_kolam + '" >Detail Kolam</a>\
                         <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
                     </tr>');
                     }
@@ -171,11 +211,35 @@
             $('#add-submit').on('click', function() {
                 var formData = $('#add-post').serializeArray();
                 var createId = Number(lastId) + 1;
+                var id_kolam = 1;
+
+                // Get Latest ID KOLAM
+                database.ref("kolam").on('value', function(snapshot) {
+                    var value = snapshot?.val();
+
+                    // Filter data by ID TAMBAK
+                    var filteredData = value.filter(function(el) {
+                        return el.id_hardware == '{{$id_hardware}}';
+                    });
+
+                    // Assign ID KOLAM
+                    var latestFilteredData = Object.values(filteredData).pop();
+                    latestFilteredData?.id_kolam == null ? id_kolam : id_kolam = latestFilteredData.id_kolam + 1;
+                });
 
                 firebase.database().ref('kolam/' + createId).set({
+                    id_kolam: id_kolam,
                     nama_kolam: formData[0].value,
-                    idtambak: formData[1].value
+                    panjang: formData[1].value,
+                    lebar: formData[2].value,
+                    kedalaman: formData[3].value,
+                    noted: formData[4].value,
+                    id_hardware: formData[5].value,
+                    // id_kolam: 
                 });
+                // firebase.database().ref('kolam').once('value', function(snapshot) {
+                //     var id_kolam = snapshot.numChildren();
+                // })
 
                 // Reassign lastID value
                 lastId = createId;
@@ -190,7 +254,11 @@
                 firebase.database().ref('kolam/' + updateID).on('value', function(snapshot) {
                     var values = snapshot.val();
                     $('#update-nama_kolam').val(values.nama_kolam);
-                    $('#update-idtambak').val(values.idtambak);
+                    $('#update-panjang').val(values.panjang);
+                    $('#update-lebar').val(values.lebar);
+                    $('#update-kedalaman').val(values.kedalaman);
+                    $('#update-noted').val(values.noted);
+                    $('#update-id_hardware').val(values.id_hardware);
                 });
             });
 
@@ -199,7 +267,7 @@
                 var values = $("#update-post").serializeArray();
                 var postData = {
                     nama_kolam: values[0].value,
-                    idtambak: values[1].value
+                    id_hardware: values[1].value
                 };
 
                 var updatedPost = {};
