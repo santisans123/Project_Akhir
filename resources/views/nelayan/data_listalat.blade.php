@@ -1,27 +1,12 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.menunelayan')
 
-<head>
-    <meta charset="utf-8">
-    <title>Kolam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+@section('content')
 
 <body>
     <div class="m-5">
         <!-- Bread crumb and right sidebar toggle -->
         <div class="page-breadcrumb">
             <div class="row align-items-center">
-                <div class="float-end">
-                    <a href="{{ route('datatambak') }}">
-                        <button type="button" class="btn btn-sm btn-secondary">
-                            Back Dashboard
-                        </button>
-                    </a>
-                </div>
-                <!-- <a href="/backkolam"> <button type="button" class="btn btn-sm btn-secondary">Back </button> </a>' -->
 
                 <div class="col-5">
                     <h3 class="page-title mb-3">Data Alat</h3>
@@ -32,7 +17,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Dashboard</li>
                         <li class="breadcrumb-item">Data Alat</li>
-
+                       
                     </ol>
                 </nav>
             </div>
@@ -110,11 +95,11 @@
                 var htmls = [];
                 var no = 1;
                 $.each(value, function(index, value) {
-                    if (value && value.id_hardware === '{{$id_hardware}}' && value.id_kolam === '{{$id_kolam}}') {
+                    if (value) {
                         console.log(index);
                         htmls.push('<tr>\
                         <td>' + no++ + '</td>\
-                        <td>' + value.time + ', ' + value.date + ' </td>\
+                        <td>' + value.time + ', '+ value.date +' </td>\
                         <td>' + value.ph + '</td>\
                         <td>' + value.salinitas + '</td>\
                         <td>' + value.suhu + '</td>\
@@ -141,5 +126,4 @@
                 $("#delete-modal").modal('hide');
             });
         </script>
-    </div>
-</body>
+@endsection

@@ -26,15 +26,39 @@ Route::get('/loginadmin', function () {
     return view('auth/loginadmin');
 });
 
+Route::get('/admin/adduser', function () {
+    return view('auth/register');
+})->name('regis');
+
 Auth::routes();
 
-Route::get('datakolam/{idtambak}', function ($idtambak) {
-    return view('nelayan/data_kolam',['idtambak'=>$idtambak]);
+Route::get('/datakolam/{id_hardware}', function ($id_hardware) {
+    return view('nelayan/data_kolam', ['id_hardware' => $id_hardware]);
 })->name('datakolam');
 
-Route::get('dataalat/{id_kolam}', function ($id_kolam) {
-    return view('nelayan/data_alat',['id_kolam'=>$id_kolam]);
+Route::get('../../datakolam/{id_hardware}', function ($id_hardware) {
+    return view('nelayan/data_kolam', ['id_hardware' => $id_hardware]);
+})->name('backkolam');
+
+// Route::get('/datanelayan', function () {
+//     return view('admin/datauser_nelayan');
+// })->name('datanelayan');
+
+Route::get('/data_list_alat', function () {
+    return view('nelayan/data_listalat');
+})->name('listalat');
+
+Route::get('dataalat/{id_hardware}/{id_kolam}', function ($id_hardware, $id_kolam) {
+    return view('nelayan/data_alat', ['id_kolam' => $id_kolam,], ['id_hardware' => $id_hardware]);
 })->name('dataalat');
+
+Route::get('/table', function () {
+    return view('table');
+});
+
+Route::get('/monitor_tambak', function () {
+    return view('admin/monitor_tambak');
+})->name('monitortambak');
 
 Route::get('/datanelayan', function () {
     return view('admin/datauser_nelayan');
@@ -53,7 +77,10 @@ Route::post('register', [RegisterController::class, 'register'])
     ->middleware('checkRole')
     ->withoutMiddleware(['guest']);
 
-Route::get('/datatambak', [App\Http\Controllers\HomeController::class, 'index'])->name('datatambak')->middleware('user','fireauth');
+Route::get('/datatambak', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('datatambak')
+    ->middleware('user', 'fireauth');
+
 
 // Route::get('/home/customer', [App\Http\Controllers\HomeController::class, 'customer'])->middleware('user','fireauth');
 
@@ -61,7 +88,7 @@ Route::get('/datatambak', [App\Http\Controllers\HomeController::class, 'index'])
 
 Route::post('login/{provider}/callback', [LoginController::class, 'handleCallback']);
 
-Route::resource('/home/profile', App\Http\Controllers\Auth\ProfileController::class)->middleware('user','fireauth');
+Route::resource('/home/profile', App\Http\Controllers\Auth\ProfileController::class)->middleware('user', 'fireauth');
 
 Route::resource('/password/reset', App\Http\Controllers\Auth\ResetController::class);
 

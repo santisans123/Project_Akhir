@@ -123,8 +123,8 @@
                                 <div class="user-pic"><img src="assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
                                 <div class="user-content hide-menu m-l-10">
                                     <a href="#" class="" id="Userdd" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <h5 class="m-b-0 user-name font-medium">Steave Jobs <i class="fa fa-angle-down"></i></h5>
-                                        <span class="op-5 user-email">varun@gmail.com</span>
+                                        <h5 id="identitas" class="m-b-0 user-name font-medium"><i class="fa fa-angle-down"></i></h5>
+                                        <span class="op-5 user-email">user@gmail.com</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
                                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
@@ -136,10 +136,10 @@
                                             <i class="fa fa-power-off m-r-5 m-l-5"></i>
                                             Logout
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
+                                                @csrf
+                                            </form>
                                         </a>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-blue sidebar-link" href="table-basic.html" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-blue sidebar-link" href="{{ route('listalat') }}" aria-expanded="false">
                                 <i class="mdi mdi-cube"></i>
                                 <span class="hide-menu">Alat</span>
                             </a>
@@ -252,6 +252,41 @@
     <script src="assets/libs/chartist/dist/chartist.min.js"></script>
     <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="dist/js/pages/dashboards/dashboard1.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "{{ config('services.firebase.api_key') }}",
+            authDomain: "{{ config('services.firebase.auth_domain') }}",
+            databaseURL: "{{ config('services.firebase.database_url') }}",
+            projectId: "{{ config('services.firebase.project_id') }}",
+            storageBucket: "{{ config('services.firebase.storage_bucket') }}",
+            messagingSenderId: "{{ config('services.firebase.messaging_sender_id') }}",
+            appId: "{{ config('services.firebase.app_id') }}"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+
+        var database = firebase.database();
+        // var databaseauth = firebase.auth();
+
+        var lastId = 0;
+        // get profile data
+        database.ref("profile").on('value', function(snapshot) {
+            var value = snapshot.val();
+            var htmls = [];
+            $.each(value, function(index, value) {
+                if (value && value.userid === "{{Session::get('uid')}}") {
+                    htmls.push('<div>' + value.name + '</div>');
+                }
+                lastId = index;
+            });
+            $('#identitas').html(htmls);
+        });
+    </script>
+
 </body>
 
 </html>
