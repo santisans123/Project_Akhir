@@ -64,6 +64,14 @@ Route::get('/datanelayan', function () {
     return view('admin/datauser_nelayan');
 })->middleware('checkRole')->name('datanelayan');
 
+Route::get('/data_list_alat', function () {
+    return view('nelayan/data_listalat');
+})->name('listalat');
+
+Route::get('dataalat/{id_kolam}', function ($id_kolam) {
+    return view('nelayan/data_alat',['id_kolam'=>$id_kolam]);
+})->name('dataalat');
+
 Route::get('/dashboard', function () {
     return view('layouts/dashboard');
 });

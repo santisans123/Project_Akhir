@@ -125,11 +125,32 @@
         appId: "{{ config('services.firebase.app_id') }}"
     };
 
+    // const functions = require('firebase-functions');
+    // const admin = require('firebase-admin');
+
+    // admin.initializeApp();
+
+    // const auth = admin.auth();
+
+    // const getAllUsers = (req, res) => {
+    //     const maxResults = 1; // optional arg.
+
+    //     auth.listUsers(maxResults).then((userRecords) => {
+    //         userRecords.users.forEach((user) => console.log(user.toJSON()));
+    //         res.end('Retrieved users list successfully.');
+    //     }).catch((error) => console.log(error));
+    // };
+
+    // module.exports = {
+    //     api: functions.https.onRequest(getAllUsers),
+    // };
+
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
 
     var database = firebase.database();
     // var databaseauth = firebase.auth();
+
 
     var lastId = 0;    
     // get profile data
@@ -145,6 +166,7 @@
                         <td>' + value.password + '</td>\
                         <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn text-white btn-success update-post" data-id="' + index + '">Edit</a>\
                         <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn text-white btn-danger delete-data" data-id="' + index + '">Hapus</a></td>\
+
                     </tr>');
             }
             lastId = index;
