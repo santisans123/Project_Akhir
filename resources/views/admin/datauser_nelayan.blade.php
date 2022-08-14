@@ -15,10 +15,13 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                Semua Data Tambak
-                <div class="float-end">
-                    <a class="nav-link" href="{{ route('register') }}"><button type="button" class="btn btn-sm btn-primary">Add User</button></a>
+                <div class="row">
+                    <h4 class="col align-self-center">Semua Data User</h4>
+                    <div class="col">
+                        <a class="nav-link" href="{{ route('register') }}"><button type="button" class="btn btn-primary py-2 my-2 float-end">Tambah user</button></a>
+                    </div>
                 </div>
+
             </div>
             <div class="card-body">
                 <table class="table table-hover">
@@ -140,9 +143,8 @@
                         <td>' + value.name + '</td>\
                         <td>' + value.email + '</td>\
                         <td>' + value.password + '</td>\
-                        <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
-                        <a class="btn btn-primary" href="datakolam" >+ Kolam</a>\
-                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
+                        <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn text-white btn-success update-post" data-id="' + index + '">Edit</a>\
+                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn text-white btn-danger delete-data" data-id="' + index + '">Hapus</a></td>\
                     </tr>');
             }
             lastId = index;

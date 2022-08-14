@@ -75,11 +75,11 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-blue" href="javascript:void(0)"><i class="ti-search"></i></a>
+                        {{-- <li class="nav-item search-box"> <a class="nav-link waves-effect waves-blue" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <form class="app-search position-absolute">
                                 <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
                             </form>
-                        </li>
+                        </li> --}}
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -88,7 +88,7 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-blue pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
                             </a>
@@ -96,7 +96,7 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
                                     My Profile</a>
                             </ul>
-                        </li>
+                        </li> --}}
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -127,12 +127,12 @@
                                         <span class="op-5 user-email">user@gmail.com</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
-                                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                        {{-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
-                                        <div class="dropdown-divider"></div>
+                                        <div class="dropdown-divider"></div> --}}
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">>
+                                            document.getElementById('logout-form').submit();">
                                             <i class="fa fa-power-off m-r-5 m-l-5"></i>
                                             Logout
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -146,12 +146,12 @@
                             <!-- End User Profile-->
                         </li>
                         <!-- User Profile-->
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-bg-primary sidebar-link" href="index.html" aria-expanded="true">
+                        {{-- <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-bg-primary sidebar-link" href="/" aria-expanded="true">
                                 <i class="mdi mdi-view-dashboard"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-blue sidebar-link" href="{{ route('datatambak') }}" aria-expanded="false">
                                 <i class="mdi mdi-water"></i>

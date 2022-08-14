@@ -3,7 +3,6 @@
 @section('content')
 
 <body>
-    <div class="m-5">
         <!-- Bread crumb and right sidebar toggle -->
         <div class="page-breadcrumb">
             <div class="row align-items-center">
@@ -12,7 +11,7 @@
                     <h3 class="page-title mb-3">Data Alat</h3>
                 </div>
             </div>
-            <div class="d-flex align-items-center">
+            {{-- <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Dashboard</li>
@@ -20,7 +19,7 @@
                        
                     </ol>
                 </nav>
-            </div>
+            </div> --}}
         </div>
         <!-- End Bread crumb and right sidebar toggle -->
 
@@ -33,7 +32,7 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Waktu dan tanggal</th>
-                                    <th scope="col">Ph</th>
+                                    <th scope="col">pH</th>
                                     <th scope="col">Salinitas</th>
                                     <th scope="col">Suhu</th>
                                     <th scope="col">Action</th>
@@ -53,16 +52,16 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Delete post</h5>
+                        <h5 class="modal-title">Hapus</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p class="lead">Are you sure you want to delete this post?</p>
+                        <p class="lead">Apakah anda ingin menghapus data ini?</p>
                         <input name="id" id="post-id" type="hidden">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="delete-button" class="btn btn-primary">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" id="delete-button" class="btn btn-primary">Hapus</button>
                     </div>
                 </div>
             </div>
@@ -103,7 +102,7 @@
                         <td>' + value.ph + '</td>\
                         <td>' + value.salinitas + '</td>\
                         <td>' + value.suhu + '</td>\
-                        <td><a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
+                        <td><a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn text-white btn-danger delete-data" data-id="' + index + '">Hapus</a></td>\
                     </tr>');
                     }
                     lastId = index;

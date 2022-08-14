@@ -24,7 +24,7 @@
 </head>
 <body  style="min-height:90vh;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -72,16 +72,20 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        <main class="py-4">
+        <main class="py-4 mt-lg-2">
+            <a href="/">
+                <img src="{{asset('style/assets/shrimp.png')}}" class="d-block mx-auto my-5 " style="max-width: 10%">
+            </a>
+            
             @yield('content')
         </main>
     </div>
 
     <footer id="sticky-footer" class="flex-shrink-0 py-4 text-blue-50">
       <div class="container text-center">
-        <small>Made with ❤️ by <a href="https://www.youtube.com/channel/UCPj8ztcYe1D6SSuXPDpupeA" style="text-decoration: none;">Pens-2022</a></small>
+        <small>Made with  by <a href="/" style="text-decoration: none;">Pens-2022</a></small>
       </div>
     </footer>
 </body>

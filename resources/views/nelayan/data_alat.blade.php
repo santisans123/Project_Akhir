@@ -14,23 +14,22 @@
         <!-- Bread crumb and right sidebar toggle -->
         <div class="page-breadcrumb">
             <div class="row align-items-center">
-                <div class="float-end">
-                    <a href="{{ route('datatambak') }}">
+                <div class="row d-flex">
+                    <h3 class="col page-title mb-3">Data Alat</h3>
+                    <a href="{{ route('datatambak') }}" class="col-auto">
                         <button type="button" class="btn btn-sm btn-secondary">
-                            Back Dashboard
+                            Kembali
                         </button>
                     </a>
                 </div>
+
                 <!-- <a href="/backkolam"> <button type="button" class="btn btn-sm btn-secondary">Back </button> </a>' -->
 
-                <div class="col-5">
-                    <h3 class="page-title mb-3">Data Alat</h3>
-                </div>
             </div>
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="{{ route('datatambak') }}" style="text-decoration: none">Data Tambak</a></li>
                         <li class="breadcrumb-item">Data Alat</li>
 
                     </ol>

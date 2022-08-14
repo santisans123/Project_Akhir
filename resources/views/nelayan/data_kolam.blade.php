@@ -14,37 +14,38 @@
         <!-- Bread crumb and right sidebar toggle -->
         <div class="page-breadcrumb">
             <div class="row align-items-center">
-                <div class="float-end">
-                    <a href="{{ route('datatambak') }}">
-                        <button type="button" class="btn btn-sm btn-secondary">
-                            Back
+                <div class="row d-flex">
+                    <h3 class="col page-title mb-3">Data kolam</h3>
+                    <a href="{{ route('datatambak') }}" class="col-auto">
+                        <button type="button" class="btn btn-secondary" >
+                            Kembali
                         </button>
                     </a>
                 </div>
-                    <h3 class="page-title mb-3" id="nama-tambak">Data kolam</h3>
-                <div class="col-5">
-                    <h3 class="page-title mb-3">Data kolam</h3>
-                </div>
+                
             </div>
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('datatambak') }}">Data Tambak</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('datatambak') }}" style="text-decoration: none">Data Tambak</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Kolam</li>
                     </ol>
                 </nav>
             </div>
         </div>
         <!-- End Bread crumb and right sidebar toggle -->
-
+        <h4 class="page-title my-4" id="nama-tambak"></h4>
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        Semua Data kolam
-                        <div class="float-end">
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal">Tambah kolam</button>
+                        <div class="row">
+                            <h5 class="col align-self-center">Semua Data Kolam</h5>
+                            <div class="col">
+                            <button type="button" class="btn btn-primary py-2 my-2 float-end " data-bs-toggle="modal" data-bs-target="#add-modal">Tambah kolam</button>
                         </div>
+                    </div>
+                        
                     </div>
                     <div class="card-body">
                         <table class="table table-hover">
@@ -98,8 +99,8 @@
                                 <textarea class="form-control" name="noted" id="noted"></textarea>
                             </div>
                             <input type="hidden" class="form-control" value="{{$id_hardware}}" name="id_hardware" id="id_hardware">
-                            <button type="button" id="add-submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="add-submit" class="btn btn-primary">Tambah</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         </form>
                     </div>
                 </div>
@@ -110,7 +111,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Update</h5>
+                        <h5 class="modal-title">Edit Kolam</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
@@ -136,8 +137,8 @@
                                 <textarea class="form-control" name="update-noted" id="update-noted"></textarea>
                             </div>
                             <input type="hidden" class="form-control" value="{{$id_hardware}}" name="id_hardware" id="update-id_hardware">
-                            <button type="button" id="update-button" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="update-button" class="btn btn-primary">Ubah</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         </form>
                     </div>
                 </div>
@@ -148,16 +149,16 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Delete post</h5>
+                        <h5 class="modal-title">Hapus Kolam</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p class="lead">Are you sure you want to delete this post?</p>
+                        <p class="lead">Apakah anda ingin menghapus data ini?</p>
                         <input name="id" id="post-id" type="hidden">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="delete-button" class="btn btn-primary">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" id="delete-button" class="btn btn-primary">Hapus</button>
                     </div>
                 </div>
             </div>
@@ -198,9 +199,10 @@
                         <td>' + value.lebar + '</td>\
                         <td>' + value.kedalaman + '</td>\
                         <td>' + value.noted + '</td>\
-                        <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success mt-1 update-post" data-id="' + index + '">Update</a>\
-                        <a class="btn btn-primary mt-1" href="../../dataalat/' + value.id_hardware + '/' + value.id_kolam + '" >Detail Kolam</a>\
-                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger mt-1 delete-data" data-id="' + index + '">Delete</a></td>\
+                        <td>\
+                            <a class="btn btn-primary mt-1" href="../../dataalat/' + value.id_hardware + '/' + value.id_kolam + '" >Detail Kolam</a>\
+                            <a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success mt-1 update-post" data-id="' + index + '">Edit</a>\
+                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger mt-1 delete-data" data-id="' + index + '">Hapus</a></td>\
                     </tr>');
                     }
                     lastId = index;
