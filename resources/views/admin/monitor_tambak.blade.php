@@ -1,4 +1,4 @@
-@extends('layouts.menunelayan')
+@extends('layouts.menuadmin')
 
 @section('content')
 <!-- Bread crumb and right sidebar toggle -->
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+                <table  id="tabledata" class="table-hover table table-striped table-bordered nowrap" style="width:100%>
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -164,7 +164,7 @@
         var htmls = [];
         var no =1;
         $.each(value, function(index, value) {
-            if (value&&value.userid==="{{Session::get('uid')}}") {
+            if (value) {
                 htmls.push('<tr>\
                         <td>' + no++ + '</td>\
                         <td>' + value.id_hardware + '</td>\
@@ -173,13 +173,19 @@
                         <td>' + value.jenisPakan + '</td>\
                         <td>' + value.gramPakan + '</td>\
                         <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
-                        <a class="btn btn-primary" href="datakolam/' + index +'" >+ Kolam</a>\
+                        <a class="btn btn-primary" href="datakolam/' + index +'" >Detail Tambak</a>\
                         <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
                     </tr>');
             }
             lastId = index;
         });
         $('#table-list').html(htmls);
+        var table = $('#tabledata').DataTable({
+            responsive: true,
+            stateSave: true,
+            "bDestroy": true
+        });
+        new $.fn.dataTable.FixedHeader(table);
     });
 
     // add data

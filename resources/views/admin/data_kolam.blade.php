@@ -3,30 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="10">
     <title>Kolam</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Datatable -->
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
-
-    <style>
-        .modal-backdrop {
-            /* bug fix - no overlay */
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -41,7 +21,7 @@
                         </button>
                     </a>
                 </div>
-                <h3 class="page-title mb-3" id="nama-tambak">Data kolam</h3>
+                    <h3 class="page-title mb-3" id="nama-tambak">Data kolam</h3>
                 <div class="col-5">
                     <h3 class="page-title mb-3">Data kolam</h3>
                 </div>
@@ -67,7 +47,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table id="tabledata" class="table-hover table table-striped table-bordered nowrap" style="width:100%">
+                        <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -117,7 +97,6 @@
                                 <label for="noted" class="form-label">Catatan</label>
                                 <textarea class="form-control" name="noted" id="noted"></textarea>
                             </div>
-                            <input type="hidden" value="{{Session::get('uid')}}" name="userid" id="userid">
                             <input type="hidden" class="form-control" value="{{$id_hardware}}" name="id_hardware" id="id_hardware">
                             <button type="button" id="add-submit" class="btn btn-primary">Submit</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -127,7 +106,6 @@
             </div>
         </div>
         {{-- update modal --}}
-
         <div class="modal fade" id="update-modal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -157,7 +135,6 @@
                                 <label for="update-noted" class="form-label">Catatan</label>
                                 <textarea class="form-control" name="update-noted" id="update-noted"></textarea>
                             </div>
-                            <input type="hidden" value="{{Session::get('uid')}}" name="userid" id="update-userid">
                             <input type="hidden" class="form-control" value="{{$id_hardware}}" name="id_hardware" id="update-id_hardware">
                             <button type="button" id="update-button" class="btn btn-primary">Submit</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -213,7 +190,7 @@
                 var htmls = [];
                 var no = 1;
                 $.each(value, function(index, value) {
-                    if (value && value.id_hardware === '{{$id_hardware}}' && value.userid === "{{Session::get('uid')}}") {
+                    if (value && value.id_hardware === '{{$id_hardware}}') {
                         htmls.push('<tr>\
                         <td>' + no++ + '</td>\
                         <td>' + value.nama_kolam + '</td>\
@@ -229,14 +206,6 @@
                     lastId = index;
                 });
                 $('#table-list').html(htmls);
-
-                var table = $('#tabledata').DataTable({
-                    responsive: true,
-                    stateSave: true,
-                    "bDestroy": true
-                });
-                new $.fn.dataTable.FixedHeader(table);
-
             });
             // post nama Tambak
             database.ref("tambak").on('value', function(snapshot) {
@@ -277,9 +246,8 @@
                     lebar: formData[2].value,
                     kedalaman: formData[3].value,
                     noted: formData[4].value,
-                    userid: formData[5].value,
-                    id_hardware: formData[6].value,
-
+                    id_hardware: formData[5].value,
+                    // id_kolam: 
                 });
                 // firebase.database().ref('kolam').once('value', function(snapshot) {
                 //     var id_kolam = snapshot.numChildren();
@@ -302,7 +270,6 @@
                     $('#update-lebar').val(values.lebar);
                     $('#update-kedalaman').val(values.kedalaman);
                     $('#update-noted').val(values.noted);
-                    $('#update-userid').val(values.userid);
                     $('#update-id_hardware').val(values.id_hardware);
                 });
             });
@@ -312,12 +279,7 @@
                 var values = $("#update-post").serializeArray();
                 var postData = {
                     nama_kolam: values[0].value,
-                    panjang: values[1].value,
-                    lebar: values[2].value,
-                    kedalaman: values[3].value,
-                    noted: values[4].value,
-                    userid: values[5].value,
-                    id_hardware: values[6].value,
+                    id_hardware: values[1].value
                 };
 
                 var updatedPost = {};

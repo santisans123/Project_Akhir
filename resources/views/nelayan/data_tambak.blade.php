@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+                <table id="tabledata" class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -147,7 +147,6 @@
         var htmls = [];
         var no = 1;
 
-
         $.each(value, function(index, value) {
             if (value && value.userid === "{{Session::get('uid')}}") {
 
@@ -164,6 +163,13 @@
             lastId = index;
         });
         $('#table-list').html(htmls);
+
+        var table = $('#tabledata').DataTable({
+            responsive: true,
+            stateSave: true,
+            "bDestroy": true
+        });
+        new $.fn.dataTable.FixedHeader(table);
     });
 
     database.ref("profile").on('value', function(snapshot) {
@@ -177,12 +183,6 @@
         });
         $('#identitas').html(htmls);
     });
-    // $(document).ready(function() {
-    // var table = $('#table-list').DataTable( {
-    //     responsive: true
-    // } );
-    //     new $.fn.dataTable.FixedHeader( table );
-    // } );
 
     // add data
     $('#add-submit').on('click', function() {
@@ -243,6 +243,26 @@
     // delete post
     $('#delete-button').on('click', function() {
         var id = $('#post-id').val();
+        let idHardware = "";
+        let filteredKolam = [];
+        let filteredAlat = [];
+
+        database.ref('tambak/' + id).on('value', (snapshot) => {
+            idHardware = snapshot.val().id_hardware;
+        })
+
+        database.ref().child("kolam").orderByChild("id_hardware").equalTo(idHardware).once('value', snapshot => {
+            const updates = {};
+            snapshot.forEach(child => updates[child.key] = null);
+            database.ref("kolam").update(updates);
+        });
+
+        // database.ref().child("alat").orderByChild("id_hardware").equalTo(idHardware).once('value', snapshot => {
+        //     const updates = {};
+        //     snapshot.forEach(child => updates[child.key] = null);
+        //     database.ref("alat").update(updates);
+        // });
+
         firebase.database().ref('tambak/' + id).remove();
 
         $('#post-id').val('');

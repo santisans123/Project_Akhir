@@ -15,99 +15,34 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                Semua Data Tambak
-                <div class="float-end">
-                    <a class="nav-link" href="{{ route('register') }}"><button type="button" class="btn btn-sm btn-primary">Add User</button></a>
+                <div class="row">
+                    <h4 class="col align-self-center">Semua Data User</h4>
+                    <div class="col">
+                        <a class="nav-link" href="{{route('register') }}" ><button type="button" class="btn btn-primary py-2 my-2 float-end">Tambah user</button></a>
+                    </div>
                 </div>
+
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+                <table id="tabledata" class="table-hover table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Email</th>
                             <th scope="col">Password</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody id="table-list">
 
-                    </tbody>
+                    </ tbody >
                 </table>
             </div>
         </div>
     </div>
 </div>
-<!-- {{-- create modal --}}
-<div class="modal fade" id="add-modal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tambah Tambak</h5>
-                <button type="button" class="btn-close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="add-post" method="post">
-                    <div class="mb-3">
-                        <label for="alamat" class="form-label">Alamat</label>
-                        <textarea class="form-control" id="alamat" name="alamat"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="notlp" class="form-label">notlp</label>
-                        <input type="number" class="form-control" name="notlp" id="notlp">
-                    </div>
-                    <button type="button" id="add-submit" class="btn btn-primary">Submit</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- update modal --}}
-<div class="modal fade" id="update-modal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Update</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form id="update-post" method="post">
-                    <div class="mb-3">
-                        <label for="update-alamat" class="form-label">alamat</label>
-                        <textarea class="form-control" name="alamat" id="update-alamat"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="update-notlp" class="form-label">notlp</label>
-                        <input type="number" class="form-control" name="notlp" id="update-notlp">
-                    </div>
-                    <button type="button" id="update-button" class="btn btn-primary">Submit</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
-{{-- delete modal --}}
-<div class="modal fade" id="delete-modal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Delete post</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p class="lead">Are you sure you want to delete this post?</p>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="delete-button" class="btn btn-primary">Delete</button>
-            </div>
-        </div>
-    </div>
-</div> -->
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 <script type="text/javascript">
@@ -121,14 +56,11 @@
         messagingSenderId: "{{ config('services.firebase.messaging_sender_id') }}",
         appId: "{{ config('services.firebase.app_id') }}"
     };
-
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
-
-    var database = firebase.database();
+    var database =  firebase . database ();
     // var databaseauth = firebase.auth();
-
-    var lastId = 0;    
+    var lastId =  0 ;    
     // get profile data
     database.ref("profile").on('value', function(snapshot) {
         var value = snapshot.val();
@@ -140,72 +72,25 @@
                         <td>' + value.name + '</td>\
                         <td>' + value.email + '</td>\
                         <td>' + value.password + '</td>\
-                        <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success update-post" data-id="' + index + '">Update</a>\
-                        <a class="btn btn-primary" href="datakolam" >+ Kolam</a>\
-                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
+                        <td><a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn text-white btn-success update-post" data-id="' + index + '">Edit</a>\
+                        <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn text-white btn-danger delete-data" data-id="' + index + '">Hapus</a></td>\
                     </tr>');
             }
             lastId = index;
         });
         $('#table-list').html(htmls);
+        var table = $('#tabledata').DataTable({
+            responsive: true,
+            stateSave: true,
+            "bDestroy": true
+        });
+        new $.fn.dataTable.FixedHeader(table);
     });
-
-
-    // // add data
-    // $('#add-submit').on('click', function() {
-    //     var formData = $('#add-post').serializeArray();
-    //     var createId = Number(lastId) + 1;
-
-    //     firebase.database().ref('profile/' + createId).set({
-    //         alamat: formData[0].value,
-    //         notlp: formData[1].value,
-    //     });
-
-    //     // Reassign lastID value
-    //     lastId = createId;
-    //     $("#add-post")[0].reset();
-    //     $("#add-modal").modal('hide');
-    // });
-
-    // // update modal
-    // var updateID = 0;
-    // $('body').on('click', '.update-post', function() {
-    //     updateID = $(this).attr('data-id');
-    //     firebase.database().ref('profile/' + updateID).on('value', function(snapshot) {
-    //         var values = snapshot.val();
-    //         $('#update-alamat').val(values.alamat);
-    //         $('#update-notlp').val(values.notlp);
-    //     });
-    // });
-
-    // // update post
-    // $('#update-button').on('click', function() {
-    //     var values = $("#update-post").serializeArray();
-    //     var postData = {
-    //         alamat: values[0].value,
-    //         notlp: values[1].value,
-    //     };
-
-    //     var updatedPost = {};
-    //     updatedPost['/profile/' + updateID] = postData;
-
-    //     firebase.database().ref().update(updatedPost);
-
-    //     $("#update-modal").modal('hide');
-    //     $("#update-post")[0].reset();
-    // });
-
-    // // delete modal
-    // $("body").on('click', '.delete-data', function() {
-    //     var id = $(this).attr('data-id');
-    //     $('#post-id').val(id);
-    // });
-
+    
     // delete post
     $('#delete-button').on('click', function() {
-        var id = $('#post-id').val();
+        var id =  $ ( ' #post-id ' ). choice ();
         firebase.database().ref('profile/' + id).remove();
-
         $('#post-id').val('');
         $("#delete-modal").modal('hide');
     });

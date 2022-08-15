@@ -5,6 +5,11 @@
 @import "icons/material-design-iconic-font/css/materialdesignicons.min.css";
 @import "icons/weather-icons/css/weather-icons.min.css";
 
+.modal-backdrop {
+    /* bug fix - no overlay */
+    display: none;
+}
+
 .topbar .dropdown-menu .with-arrow>span {
     transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -12346,14 +12351,14 @@ html[dir=ltr] body .p-l-0 {
 
 #main-wrapper[data-layout=horizontal] .topbar .top-navbar .navbar-header[data-logobg=skin5],
 #main-wrapper[data-layout=vertical] .topbar .top-navbar .navbar-header[data-logobg=skin5] {
-    background: #414755
+    background: #189AD3
 }
 
 #main-wrapper[data-layout=horizontal] .topbar .navbar-collapse[data-navbarbg=skin5],
 #main-wrapper[data-layout=horizontal] .topbar[data-navbarbg=skin5],
 #main-wrapper[data-layout=vertical] .topbar .navbar-collapse[data-navbarbg=skin5],
 #main-wrapper[data-layout=vertical] .topbar[data-navbarbg=skin5] {
-    background: #414755
+    background: #189AD3
 }
 
 #main-wrapper[data-layout=horizontal] .left-sidebar[data-sidebarbg=skin6],

@@ -3,23 +3,11 @@
 @section('content')
 
 <body>
-    <div class="m-5">
+    <div class="m-2">
         <!-- Bread crumb and right sidebar toggle -->
         <div class="page-breadcrumb">
             <div class="row align-items-center">
-
-                <div class="col-5">
-                    <h3 class="page-title mb-3">Data Alat</h3>
-                </div>
-            </div>
-            <div class="d-flex align-items-center">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item">Data Alat</li>
-                       
-                    </ol>
-                </nav>
+                <h3 class="page-title mb-3">Data Alat</h3>
             </div>
         </div>
         <!-- End Bread crumb and right sidebar toggle -->
@@ -28,7 +16,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table id="example" class="table-hover table table-striped table-bordered nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -99,7 +87,7 @@
                         console.log(index);
                         htmls.push('<tr>\
                         <td>' + no++ + '</td>\
-                        <td>' + value.time + ', '+ value.date +' </td>\
+                        <td>' + value.time + ', ' + value.date + ' </td>\
                         <td>' + value.ph + '</td>\
                         <td>' + value.salinitas + '</td>\
                         <td>' + value.suhu + '</td>\
@@ -109,6 +97,14 @@
                     lastId = index;
                 });
                 $('#table-list').html(htmls);
+                var table = $('#tabledata').DataTable({
+                    responsive: true,
+                    stateSave: true,
+                    "bDestroy": true
+                });
+                new $.fn.dataTable.FixedHeader(table);
+
+                new $.fn.dataTable.FixedHeader(table);
             });
 
             // delete modal
@@ -126,4 +122,4 @@
                 $("#delete-modal").modal('hide');
             });
         </script>
-@endsection
+        @endsection
