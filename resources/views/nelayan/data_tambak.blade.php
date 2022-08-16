@@ -6,7 +6,6 @@
     <div class="row align-items-center">
         <div class="col-5">
             <h3 class="page-title mb-3">Data Tambak</h3>
-            <h2 id="identitas"></h2>
         </div>
     </div>
 </div>
@@ -170,18 +169,6 @@
             "bDestroy": true
         });
         new $.fn.dataTable.FixedHeader(table);
-    });
-
-    database.ref("profile").on('value', function(snapshot) {
-        var value = snapshot.val();
-        var htmls = [];
-        $.each(value, function(index, value) {
-            if (value && value.userid === "{{Session::get('uid')}}") {
-                htmls.push('<div>' + value.name + '</div>');
-            }
-            lastId = index;
-        });
-        $('#identitas').html(htmls);
     });
 
     // add data

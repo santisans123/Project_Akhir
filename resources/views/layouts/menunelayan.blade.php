@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="refresh" content="15">
     <title>Nelayan</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -134,7 +135,7 @@
                                 <div class="user-pic"><img src="assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
                                 <div class="user-content hide-menu m-l-10">
                                     <a href="#" class="" id="Userdd" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <h5 class="m-b-0 user-name font-medium"><i class="fa fa-angle-down"></i></h5>
+                                        <h5 class="m-b-0 user-name font-medium" id="nama_user"><i class="fa fa-angle-down"></i></h5>
                                         <span class="op-5 user-email">user@gmail.com</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
@@ -158,14 +159,8 @@
                         </li>
                         <!-- User Profile-->
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-bg-primary sidebar-link" href="{{ route('datatambak') }}" aria-expanded="true">
-                                <i class="mdi mdi-view-dashboard"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-blue sidebar-link" href="{{ route('datatambak') }}" aria-expanded="false">
-                                <i class="mdi mdi-water"></i>
+                                <i class="mdi mdi-view-dashboard"></i>
                                 <span class="hide-menu">Tambak</span>
                             </a>
                         </li>
@@ -264,7 +259,7 @@
     <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="dist/js/pages/dashboards/dashboard1.js"></script>
 
-    <!-- <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
     <script>
         const firebaseConfig = {
@@ -284,18 +279,17 @@
         // var databaseauth = firebase.auth();
 
         var lastId = 0;
-        // get profile data
-        database.ref("profile").on('value', function(snapshot) {
-            var value = snapshot.val();
-            var htmls = [];
-            $.each(value, function(index, value) {
-                if (value && value.userid === "{{Session::get('uid')}}") {
-                    htmls.push('<div>' + value.name + '</div>');
-                }
-                lastId = index;
-            });
-            $('#identitas').html(htmls);
-        }); -->
+        // post nama User
+        // database.ref("profile").on('value', function(snapshot) {
+        //     var value = snapshot.val();
+        //     var htmls = [];
+        //     $.each(value, function(index, value) {
+        //         if (value && value.userid === "{{Session::get('uid')}}") {
+        //             htmls.push('' + value.name + '');
+        //         }
+        //     });
+        //     $('#nama_user').html(htmls);
+        // });
     </script>
 
 </body>

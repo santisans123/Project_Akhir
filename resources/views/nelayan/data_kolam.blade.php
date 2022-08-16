@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="15">
     <title>Kolam</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -41,7 +41,7 @@
                         </button>
                     </a>
                 </div>
-                <h3 class="page-title mb-3" id="nama-tambak">Data kolam</h3>
+                <h3 class="page-title mb-3" id="nama-tambak"></h3>
                 <div class="col-5">
                     <h3 class="page-title mb-3">Data kolam</h3>
                 </div>

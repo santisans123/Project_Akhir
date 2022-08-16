@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table  id="tabledata" class="table-hover table table-striped table-bordered nowrap" style="width:100%>
+                <table  id="tabledata" class="table-hover table table-striped table-bordered nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>

@@ -70,6 +70,7 @@
                                     <th scope="col">Ph</th>
                                     <th scope="col">Salinitas</th>
                                     <th scope="col">Suhu</th>
+                                    <th scope="col">DO</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -137,11 +138,14 @@
                         <td>' + value.ph + '</td>\
                         <td>' + value.salinitas + '</td>\
                         <td>' + value.suhu + '</td>\
+                        <td>' + value.do + '</td>\
                         <td><a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' + index + '">Delete</a></td>\
                     </tr>');
                     }
                     lastId = index;
                 });
+
+                $('#table-list').html(htmls);
                 var table = $('#tabledata').DataTable({
                     responsive: true,
                     stateSave: true,
