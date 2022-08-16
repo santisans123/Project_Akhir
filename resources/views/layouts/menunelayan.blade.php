@@ -126,6 +126,7 @@
                                         <h5 id="identitas" class="m-b-0 user-name font-medium"><i class="fa fa-angle-down"></i></h5>
                                         <span class="op-5 user-email">user@gmail.com</span>
                                     </a>
+                                    <h1 id="identitas"></h1>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
                                         {{-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                         <div class="dropdown-divider"></div>
@@ -274,12 +275,27 @@
 
         var lastId = 0;
         // get profile data
+        // database.ref("profile").on('value', function(snapshot) {
+        //     var value = snapshot.val();
+        //     var htmls = [];
+        //     $.each(value, function(index, value) {
+        //         if (value && value.userid === "{{Session::get('uid')}}") {
+        //             htmls.push('<div>' + value.name + '</div>');
+        //         }
+        //         lastId = index;
+        //     });
+        //     $('#identitas').html(htmls);
+        // });
         database.ref("profile").on('value', function(snapshot) {
             var value = snapshot.val();
             var htmls = [];
+            var no = 1;
+
+
             $.each(value, function(index, value) {
-                if (value && value.userid === "{{Session::get('uid')}}") {
-                    htmls.push('<div>' + value.name + '</div>');
+                if (value && value.userid === "{{ Session::get('uid') }}") {
+
+                    htmls.push(''+ value.name +'');
                 }
                 lastId = index;
             });

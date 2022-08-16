@@ -161,7 +161,7 @@
                                 <td>' + value.namatambak + '</td>\
                                 <td>\
                                     <a class="btn btn-primary mt-1" href="datakolam/' + value.id_hardware +
-                        '" >Detail Kolam</a>\
+                        '" >Detail Tambak</a>\
                                     <a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn text-white btn-success mt-1 update-post" data-id="' +
                         index +
                         '">Edit</a>\
@@ -174,17 +174,6 @@
             $('#table-list').html(htmls);
         });
 
-        database.ref("profile").on('value', function(snapshot) {
-            var value = snapshot.val();
-            var htmls = [];
-            $.each(value, function(index, value) {
-                if (value && value.userid === "{{ Session::get('uid') }}") {
-                    htmls.push('<div>' + value.name + '</div>');
-                }
-                lastId = index;
-            });
-            $('#identitas').html(htmls);
-        });
         // $(document).ready(function() {
         // var table = $('#table-list').DataTable( {
         //     responsive: true

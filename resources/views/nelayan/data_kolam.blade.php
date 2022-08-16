@@ -35,6 +35,7 @@
         </div>
         <!-- End Bread crumb and right sidebar toggle -->
         <h4 class="page-title my-4" id="nama-tambak"></h4>
+        <h3 id="nama_user"></h3>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -220,7 +221,16 @@
                 });
                 $('#nama-tambak').html(htmls);
             });
-
+            database.ref("profile").on('value', function(snapshot) {
+                var value = snapshot.val();
+                var htmls = [];
+                $.each(value, function(index, value) {
+                    if (value && value.userid === '{{ Session::get('uid') }}') {
+                        htmls.push('' + value.name + ')');
+                    }
+                });
+                $('#nama_user').html(htmls);
+            });
             // add data
             $('#add-submit').on('click', function() {
                 var formData = $('#add-post').serializeArray();
