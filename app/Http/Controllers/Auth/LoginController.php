@@ -63,7 +63,6 @@ class LoginController extends Controller
           else
             return redirect($this->redirectPath());
        } catch (FirebaseException $e) {
-          dd($e);
           throw ValidationException::withMessages([$this->username() => [trans('auth.failed')],]);
        }
     }

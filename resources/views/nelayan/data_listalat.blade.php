@@ -16,7 +16,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table id="example" class="table-hover table table-striped table-bordered nowrap" style="width:100%">
+                        <table id="tabledata" class="table-hover table table-striped table-bordered nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -104,7 +104,6 @@
                 });
                 new $.fn.dataTable.FixedHeader(table);
 
-                new $.fn.dataTable.FixedHeader(table);
             });
 
             // delete modal
