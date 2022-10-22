@@ -22,9 +22,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/table', function () {
     return view('table');
 });
+
 
 Route::get('/loginadmin', function () {
     return view('auth/loginadmin');
@@ -44,9 +46,11 @@ Route::get('../../datakolam/{id_hardware}', function ($id_hardware) {
     return view('nelayan/data_kolam', ['id_hardware' => $id_hardware]);
 })->name('backkolam');
 
+
 Route::get('/datanelayan', function () {
     return view('admin/datauser_nelayan');
 })->name('datanelayan');
+
 
 Route::get('/data_list_alat', function () {
     return view('nelayan/data_listalat');

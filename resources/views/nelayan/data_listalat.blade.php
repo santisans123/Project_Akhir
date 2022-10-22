@@ -2,6 +2,7 @@
 
 @section('content')
 
+
     <body>
         <div class="m-2">
             <!-- Bread crumb and right sidebar toggle -->
@@ -172,3 +173,4 @@
                 });
             </script>
         @endsection
+

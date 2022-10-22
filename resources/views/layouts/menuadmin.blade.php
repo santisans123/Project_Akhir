@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Admin</title>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Favicon icon -->
@@ -17,6 +19,7 @@
     <link href="dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
     <!-- Datatable -->
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
@@ -28,6 +31,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -96,16 +100,19 @@
                             <div class="user-profile d-flex no-block dropdown m-t-20">
                                 <div class="user-pic"><img src="assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
                                 <div class="user-content hide-menu m-l-10">
+
                                     <a href="#" class="" id="Userdd" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none">
                                         <h5 class="m-b-0 user-name font-medium">Admin <i class="fa fa-angle-down"></i></h5>
                                         <span class="op-5 user-email">admin@admin.com</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
+
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                             <i class="fa fa-power-off m-r-5 m-l-5"></i>
                                             Logout
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+
                                                 @csrf
                                             </form>
                                         </a>
@@ -116,14 +123,18 @@
                             <!-- End User Profile-->
                         </li>
                         <!-- User Profile-->
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('datanelayan') }}" aria-expanded="false" style="text-decoration: none">
+
                                 <i class="mdi mdi-plus"></i>
                                 <span class="hide-menu">Tambah User</span>
                             </a>
                         </li>
                         {{-- <li class="sidebar-item">
+
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('monitortambak') }}" aria-expanded="false" style="text-decoration: none">
+
                                 <i class="mdi mdi-water"></i>
                                 <span class="hide-menu">Tambak</span>
                             </a>
@@ -201,7 +212,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
- 
+
     <!-- Bootstrap tether Core JavaScript -->
     <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="dist/js/app-style-switcher.js"></script>

@@ -11,10 +11,12 @@
     </div>
     <!-- End Bread crumb and right sidebar toggle -->
 
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
+
                     Semua Data Tambak
                     <div class="float-end">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
@@ -23,6 +25,7 @@
                 </div>
                 <div class="card-body">
                     <table id="tabledata" class="table table-hover">
+
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -51,10 +54,12 @@
                 <div class="modal-body">
                     <form id="add-post" method="post">
                         <div class="mb-3">
+
                             <label for="id_hardware" class="form-label">ID hardware ( Sesuaikan Alat )</label>
                             <input class="form-control" id="id_hardware" name="id_hardware" autocomplete="off">
                             <small id="warning-text-id-hardware" style="color: red; visibility: hidden">ID Hardware sudah
                                 terdaftar!</small>
+
                         </div>
                         <div class="mb-3">
                             <label for="alamat" class="form-label">Alamat</label>
@@ -64,9 +69,11 @@
                             <label for="namatambak" class="form-label">Nama Tambak</label>
                             <input type="text" class="form-control" name="namatambak" id="namatambak">
                         </div>
+
                         <input type="hidden" value="{{ Session::get('uid') }}" name="user_id" id="user_id">
                         <button type="button" id="add-submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
                     </form>
                 </div>
             </div>
@@ -94,9 +101,11 @@
                             <label for="update-namatambak" class="form-label">Nama Tambak</label>
                             <input type="text" class="form-control" name="namatambak" id="update-namatambak">
                         </div>
+
                         <input type="hidden" value="{{ Session::get('uid') }}" name="user_id" id="update-user_id">
                         <button type="button" id="update-button" class="btn btn-primary">Ubah</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
                     </form>
                 </div>
             </div>
@@ -112,7 +121,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+
                     <p class="lead">Apakah anda ingin mengahapus data ini?</p>
+
                     <input name="id" id="post-id" type="hidden">
                 </div>
                 <div class="modal-footer">
@@ -149,6 +160,7 @@
             var htmls = [];
             var no = 1;
 
+
             $.each(value, function(index, value) {
                 if (value && value.user_id === "{{ Session::get('uid') }}") {
 
@@ -164,10 +176,12 @@
                         '">Edit</a>\
                             <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger mt-1 delete-data" data-id="' + index + '">Hapus</a></td>\
                         </tr>');
+
                 }
                 lastId = index;
             });
             $('#table-list').html(htmls);
+
 
             var table = $('#tabledata').DataTable({
                 responsive: true,
@@ -217,6 +231,7 @@
         })
 
 
+
         // add data
         $('#add-submit').on('click', function() {
             var formData = $('#add-post').serializeArray();
@@ -226,14 +241,18 @@
                 id_hardware: formData[0].value,
                 alamat: formData[1].value,
                 namatambak: formData[2].value,
+
                 user_id: formData[3].value,
+
             });
 
             // Reassign lastID value
             lastId = createId;
             $("#add-post")[0].reset();
             $("#add-modal").modal('hide');
+
             location.reload();
+
         });
 
         // update modal
@@ -245,7 +264,9 @@
                 $('#update-id_hardware').val(values.id_hardware);
                 $('#update-alamat').val(values.alamat);
                 $('#update-namatambak').val(values.namatambak);
+
                 $('#update-user_id').val(values.user_id);
+
             });
         });
 
@@ -256,7 +277,9 @@
                 id_hardware: values[0].value,
                 alamat: values[1].value,
                 namatambak: values[2].value,
+
                 user_id: values[3].value,
+
             };
 
             var updatedPost = {};
@@ -266,7 +289,9 @@
 
             $("#update-modal").modal('hide');
             $("#update-post")[0].reset();
+
             location.reload();
+
         });
 
         // delete modal
@@ -278,6 +303,7 @@
         // delete post
         $('#delete-button').on('click', function() {
             var id = $('#post-id').val();
+
             let idHardware = "";
             let filteredKolam = [];
             let filteredAlat = [];
@@ -299,10 +325,12 @@
             //     database.ref("alat").update(updates);
             // });
 
+
             firebase.database().ref('tambak/' + id).remove();
 
             $('#post-id').val('');
             $("#delete-modal").modal('hide');
+
             location.reload();
 
         });
@@ -326,6 +354,7 @@
             });
             console.log(htmls)
             $('#email-user').html(htmls);
+
         });
     </script>
 @endsection

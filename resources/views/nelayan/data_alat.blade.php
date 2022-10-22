@@ -39,11 +39,13 @@
             color: green;
         }
     </style>
+
 </head>
 
 <body>
     <div class="m-5">
         <!-- Bread crumb and right sidebar toggle -->
+
         <div class="page-breadcrumb mb-4">
             <div class="row align-items-center">
                 <div class="col">
@@ -58,6 +60,7 @@
                 </div>
             </div>
             
+
         </div>
         <!-- End Bread crumb and right sidebar toggle -->
 
@@ -65,8 +68,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+
                         <table id="tabledata" class="table-hover table table-striped table-bordered nowrap"
                             style="width:100%">
+
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -74,7 +79,9 @@
                                     <th scope="col">Ph</th>
                                     <th scope="col">Salinitas</th>
                                     <th scope="col">Suhu</th>
+
                                     <th scope="col">DO</th>
+
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -106,6 +113,7 @@
                 </div>
             </div>
         </div>
+
 
     </div>
 
@@ -187,3 +195,4 @@
     </script>
 
 </body>
+

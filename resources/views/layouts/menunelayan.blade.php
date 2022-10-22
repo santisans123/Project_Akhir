@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="utf-8">
+
     {{-- <meta http-equiv="refresh" content="25"> --}}
     <title>Nelayan</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -19,6 +21,7 @@
     <link href="dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
     <!-- Datatable -->
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
@@ -30,6 +33,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -98,6 +102,7 @@
                             <div class="user-profile d-flex no-block dropdown m-t-20">
                                 <div class="user-pic"><img src="assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
                                 <div class="user-content hide-menu m-l-10">
+
                                     <a href="#" class="" id="Userdd" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none">
                                         
                                             <h5 class="col m-b-0 user-name font-medium" id="nama-user"></h5>
@@ -108,6 +113,7 @@
                                         
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
+
 
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -124,18 +130,22 @@
                             <!-- End User Profile-->
                         </li>
                         <!-- User Profile-->
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-blue sidebar-link" href="{{ route('datatambak') }}" aria-expanded="false" style="text-decoration: none ;">
+
                                 <i class="mdi mdi-water"></i>
                                 <span class="hide-menu">Tambak</span>
                             </a>
                         </li>
+
                         {{-- <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-blue sidebar-link" href="{{ route('listalat') }}" aria-expanded="false" style="text-decoration: none ;">
                                 <i class="mdi mdi-cube"></i>
                                 <span class="hide-menu">Alat</span>
                             </a>
                         </li> --}}
+
                     </ul>
 
                 </nav>
@@ -209,7 +219,9 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
     <!-- <script src="assets/libs/jquery/dist/jquery.min.js"></script> -->
+
     <!-- Bootstrap tether Core JavaScript -->
     <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="dist/js/app-style-switcher.js"></script>
@@ -224,6 +236,7 @@
     <script src="assets/libs/chartist/dist/chartist.min.js"></script>
     <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="dist/js/pages/dashboards/dashboard1.js"></script>
+
 </body>
 
 </html>

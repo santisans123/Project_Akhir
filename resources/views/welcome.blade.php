@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-
         <title>Aquaculture Pens</title>
 
         <!-- Fonts -->
@@ -40,8 +39,10 @@
                         <li class="nav-item"><a class="nav-link" href="#about">Tentang Kami</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Layanan</a></li>
                         {{-- <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li> --}}
+
                         <li class="nav-item"><a class="nav-link" href="#contact">Hubungi kami</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Buku Panduan</a></li>        
+
                     </ul>
                 </div>
 
@@ -72,6 +73,7 @@
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 mb-5">Sebuah platform digital yang dibangun dengan tujuan untuk mendukung penguatan sektor budidaya perairan (akuakultur) Indonesia yang maju dan mandiri.</p>
                         {{-- <a class="btn btn-light btn-xl" href="#contact">Gabung</a> --}}
+
                         <a class="btn btn-info btn-xl" href="#about">Baca Lainnya</a>
                     </div>
                 </div>
@@ -153,6 +155,7 @@
                 <h2 class="mb-4">Ayo gabung dengan kami</h2>
                 <p class="text-white-75 mb-4">hubungi kontak kami untuk join.</p>
                 {{-- <a class="btn btn-light btn-xl" href="#contact">gabung</a> --}}
+
             </div>
         </section>
         <!-- Contact-->
@@ -162,7 +165,9 @@
                     <div class="col-lg-8 col-xl-6 text-center">
                         <h2 class="mt-0">Hubungi kami</h2>
                         <hr class="divider" />
+
                         <p class="text-muted mb-5">Kirim pesan anda</p>
+
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
@@ -209,7 +214,9 @@
                                     <div class="fw-bolder">Form submission successful!</div>
                                     To activate this form, sign up at
                                     <br />
+
                                     <a href="/">Berhasil</a>
+
                                 </div>
                             </div>
                             <!-- Submit error message-->
@@ -222,6 +229,7 @@
                         </form>
                     </div>
                 </div>
+
             </div>
             <div class="container" >
                 <h4 class="d-flex justify-content-center font-bold" style="margin-top: 7rem"> Featured Sponsors</h4>
@@ -238,6 +246,7 @@
         </section>
         <!-- Footer-->
         <footer class="bg-light py-4">
+
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Aquaculture</div></div>
         </footer>
 

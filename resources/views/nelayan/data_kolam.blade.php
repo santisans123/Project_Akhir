@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="utf-8">
+
     {{-- <meta http-equiv="refresh" content="25"> --}}
+
     <title>Kolam</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Datatable -->
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -27,12 +30,14 @@
             display: none;
         }
     </style>
+
 </head>
 
 <body>
     <div class="m-5">
         <!-- Bread crumb and right sidebar toggle -->
         <div class="page-breadcrumb">
+
             <div class="row align-items-center">         
                 <div class="col">
                     <h2 class="page-title mb-3">Data kolam</h2>
@@ -40,12 +45,15 @@
                 <div class="col-auto">
                     <a href="{{ route('datatambak') }}">
                         <button type="button" class="btn btn-secondary">
+
                             Kembali
                         </button>
                     </a>
                 </div>
+
             </div>
             <h3 class="page-title mb-2 mt-2 " id="nama-tambak"></h3>
+
             <div class="d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -57,10 +65,13 @@
         </div>
         <!-- End Bread crumb and right sidebar toggle -->
 
+
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
+
                         Semua Data kolam
                         <div class="float-end">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal">Tambah kolam</button>
@@ -68,6 +79,7 @@
                     </div>
                     <div class="card-body">
                         <table id="tabledata" class="table-hover table table-striped table-bordered nowrap" style="width:100%">
+
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -75,8 +87,10 @@
                                     <th scope="col">Panjang</th>
                                     <th scope="col">Lebar</th>
                                     <th scope="col">Kedalaman</th>
+
                                     <th scope="col">Catatan</th>
                                     <th scope="col">Keterangan</th>
+
                                 </tr>
                             </thead>
                             <tbody id="table-list">
@@ -99,7 +113,9 @@
                         <form id="add-post" method="post">
                             <div class="mb-3">
                                 <label for="nama_kolam" class="form-label">Nama Kolam</label>
+
                                 <input type="text" class="form-control" id="nama_kolam" name="nama_kolam" autocomplete="off">
+
                             </div>
                             <div class="mb-3">
                                 <label for="panjang" class="form-label">Panjang</label>
@@ -117,7 +133,9 @@
                                 <label for="noted" class="form-label">Catatan</label>
                                 <textarea class="form-control" name="noted" id="noted"></textarea>
                             </div>
+
                             <input type="hidden" value="{{Session::get('uid')}}" name="user_id" id="user_id">
+
                             <input type="hidden" class="form-control" value="{{$id_hardware}}" name="id_hardware" id="id_hardware">
                             <button type="button" id="add-submit" class="btn btn-primary">Tambah</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -157,7 +175,9 @@
                                 <label for="update-noted" class="form-label">Catatan</label>
                                 <textarea class="form-control" name="update-noted" id="update-noted"></textarea>
                             </div>
+
                             <input type="hidden" value="{{Session::get('uid')}}" name="user_id" id="update-user_id">
+
                             <input type="hidden" class="form-control" value="{{$id_hardware}}" name="id_hardware" id="update-id_hardware">
                             <button type="button" id="update-button" class="btn btn-primary">Ubah</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -171,7 +191,9 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
+
                         <h5 class="modal-title">Hapus kolam</h5>
+
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -213,7 +235,9 @@
                 var htmls = [];
                 var no = 1;
                 $.each(value, function(index, value) {
+
                     if (value && value.id_hardware === '{{$id_hardware}}' && value.user_id === "{{Session::get('uid')}}") {
+
                         htmls.push('<tr>\
                         <td>' + no++ + '</td>\
                         <td>' + value.nama_kolam + '</td>\
@@ -221,8 +245,10 @@
                         <td>' + value.lebar + '</td>\
                         <td>' + value.kedalaman + '</td>\
                         <td>' + value.noted + '</td>\
+
                         <td><a class="btn btn-primary mt-1" href="../../dataalat/' + value.id_hardware + '/' + value.id_kolam + '" >Detail Kolam</a>\
                         <a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success mt-1 update-post" data-id="' + index + '">Edit</a>\
+
                         <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger mt-1 delete-data" data-id="' + index + '">Hapus</a></td>\
                     </tr>');
                     }
@@ -230,12 +256,14 @@
                 });
                 $('#table-list').html(htmls);
 
+
                 var table = $('#tabledata').DataTable({
                     responsive: true,
                     stateSave: true,
                     "bDestroy": true
                 });
                 new $.fn.dataTable.FixedHeader(table);
+
 
             });
             // post nama Tambak
@@ -249,6 +277,8 @@
                 });
                 $('#nama-tambak').html(htmls);
             });
+
+
 
             // add data
             $('#add-submit').on('click', function() {
@@ -277,8 +307,10 @@
                     lebar: formData[2].value,
                     kedalaman: formData[3].value,
                     noted: formData[4].value,
+
                     user_id: formData[5].value,
                     id_hardware: formData[6].value,
+
 
                 });
                 // firebase.database().ref('kolam').once('value', function(snapshot) {
@@ -289,7 +321,9 @@
                 lastId = createId;
                 $("#add-post")[0].reset();
                 $("#add-modal").modal('hide');
+
                 location.reload();
+
             });
 
             // update modal
@@ -303,7 +337,9 @@
                     $('#update-lebar').val(values.lebar);
                     $('#update-kedalaman').val(values.kedalaman);
                     $('#update-noted').val(values.noted);
+
                     $('#update-user_id').val(values.user_id);
+
                     $('#update-id_hardware').val(values.id_hardware);
                 });
             });
@@ -313,12 +349,14 @@
                 var values = $("#update-post").serializeArray();
                 var postData = {
                     nama_kolam: values[0].value,
+
                     panjang: values[1].value,
                     lebar: values[2].value,
                     kedalaman: values[3].value,
                     noted: values[4].value,
                     user_id: values[5].value,
                     id_hardware: values[6].value,
+
                 };
 
                 var updatedPost = {};
@@ -328,7 +366,9 @@
 
                 $("#update-modal").modal('hide');
                 $("#update-post")[0].reset();
+
                 location.reload();
+
             });
 
             // delete modal
@@ -344,7 +384,9 @@
 
                 $('#post-id').val('');
                 $("#delete-modal").modal('hide');
+
                 location.reload();
+
             });
         </script>
     </div>

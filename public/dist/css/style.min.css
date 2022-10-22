@@ -5,6 +5,7 @@
 @import "icons/material-design-iconic-font/css/materialdesignicons.min.css";
 @import "icons/weather-icons/css/weather-icons.min.css";
 
+
 .modal-backdrop {
     /* bug fix - no overlay */
     display: none;

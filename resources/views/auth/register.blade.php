@@ -71,7 +71,9 @@
 
             <div class="form-group row mb-0">
               <div class="col-md-6 offset-md-4">
+
                 <input type="hidden" value="{{Session::get('uid')}}" name="user_id" id="user_id">
+
                 <button type="submit" id="add-submit" class="btn btn-primary">
                   {{ __('Register') }}
                 </button>

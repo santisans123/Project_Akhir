@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
+
    /*
+
     |--------------------------------------------------------------------------
     | Register Controller
     |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
+
 
    use RegistersUsers;
    protected $auth;
@@ -57,6 +60,7 @@ class RegisterController extends Controller
    public function register(Request $request)
    {
       try {
+
          $this->validator($request->all())->validate();
          $userProperties = [
             'email' => $request->input('email'),
@@ -66,11 +70,14 @@ class RegisterController extends Controller
             'disabled' => false,
          ];
          $createdUser = $this->auth->createUser($userProperties);
+
          $this->database->getReference('profile')
+
             ->push([
                'name' => $request->input('name'),
                'email' => $request->input('email'),
                'password' => $request->input('password'),
+
                'user_id' => $createdUser->uid
             ]);
 
@@ -81,3 +88,4 @@ class RegisterController extends Controller
       }
    }
 }
+
