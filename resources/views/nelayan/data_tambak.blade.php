@@ -3,46 +3,62 @@
 @section('content')
     <!-- Bread crumb and right sidebar toggle -->
     <div class="page-breadcrumb">
-        <div class="row align-items-center">
-            <div class="col-5">
-                <h3 class="page-title mb-3">Data Tambak</h3>
+        <div class="row align-items-start">
+            <div class="col">
+                <h2 class="page-title mb-3">Data Tambak</h2>
             </div>
         </div>
     </div>
     <!-- End Bread crumb and right sidebar toggle -->
 
-
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-
+            <div class="d-flex justify-content-between align-items-center">
+                <h5>
                     Semua Data Tambak
-                    <div class="float-end">
-                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#add-modal" id="btn-show-add-modal">Tambah Tambak</button>
-                    </div>
-                </div>
+                </h5>
+                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#add-modal" id="btn-show-add-modal">Tambah Tambak</button>
+            </div>
+
+            {{-- view toggle --}}
+            <ul class="nav nav-pills py-4" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="table-view-tab" data-bs-toggle="pill" data-bs-target="#table-view" type="button" role="tab" aria-controls="table-view" aria-selected="true">Table</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="graph-view-tab" data-bs-toggle="pill" data-bs-target="#graph-view" type="button" role="tab" aria-controls="graph-view" aria-selected="false">Graph</button>
+                </li>
+            </ul>
+
+            <div class="card">
                 <div class="card-body">
-                    <table id="tabledata" class="table table-hover">
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="table-view" role="tabpanel" aria-labelledby="table-view-tab" tabindex="0">
+                            <table id="tabledata" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">ID Alat</th>
+                                        <th scope="col">Alamat</th>
+                                        <th scope="col">Nama Tambak</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-list">
 
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">ID Alat</th>
-                                <th scope="col">Alamat</th>
-                                <th scope="col">Nama Tambak</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-list">
-
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="graph-view" role="tabpanel" aria-labelledby="graph-view-tab" tabindex="0">
+                            Graph
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     {{-- create modal --}}
     <div class="modal fade" id="add-modal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -54,12 +70,10 @@
                 <div class="modal-body">
                     <form id="add-post" method="post">
                         <div class="mb-3">
-
                             <label for="id_hardware" class="form-label">ID hardware ( Sesuaikan Alat )</label>
                             <input class="form-control" id="id_hardware" name="id_hardware" autocomplete="off">
                             <small id="warning-text-id-hardware" style="color: red; visibility: hidden">ID Hardware sudah
                                 terdaftar!</small>
-
                         </div>
                         <div class="mb-3">
                             <label for="alamat" class="form-label">Alamat</label>
@@ -73,12 +87,12 @@
                         <input type="hidden" value="{{ Session::get('uid') }}" name="user_id" id="user_id">
                         <button type="button" id="add-submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
     {{-- update modal --}}
     <div class="modal fade" id="update-modal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
