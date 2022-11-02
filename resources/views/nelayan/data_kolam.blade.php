@@ -204,7 +204,9 @@
 
 				// loop value and index
 				$.each(value, (index, data) => {
-					if (data && data.id_hardware === '{{ $id_hardware }}' && data.user_id === "{{ Session::get('uid') }}") {
+					if (data && data.id_hardware === '{{ $id_hardware }}' && data.user_id ===
+						"{{ Session::get('uid') }}") {
+						console.log(data)
 						htmls.push(`
 							<div class="col">
 								<div class="card h-100">
@@ -214,6 +216,7 @@
 										<p class="card-subtitle">Lebar : ${data.lebar} meter</p>
 										<p class="card-subtitle">Kedalaman : ${data.kedalaman} meter</p>
 										<div class="mt-4">
+                                            <a class="btn btn-sm mt-1 btn-primary" href="../../dataalat/${data.id_hardware}/${data.id_kolam}" >Detail Kolam</a>
 											<a
 												data-bs-toggle="modal"
 												data-bs-target="#update-modal"
@@ -243,15 +246,15 @@
 			});
 			// post nama Tambak
 			database.ref("tambak").on('value', function(snapshot) {
-				var value = snapshot.val();
-				var htmls = [];
-				$.each(value, function(index, value) {
-					if (value && value.id_hardware === '{{ $id_hardware }}') {
-						htmls.push('' + value.namatambak + ' (' + value.id_hardware + ')');
-					}
-				});
-				$('#nama-tambak').html(htmls);
-			});
+                var value = snapshot.val();
+                var htmls = [];
+                $.each(value, function(index, value) {
+                    if (value && value.id_hardware === '{{$id_hardware}}') {
+                        htmls.push('' + value.namatambak + ' (' + value.id_hardware + ')');
+                    }
+                });
+                $('#nama-tambak').html(htmls);
+            });
 
 			// add data
 			$('#add-submit').on('click', function() {
@@ -265,7 +268,7 @@
 
 					// Filter data by ID TAMBAK
 					var filteredData = value.filter(function(el) {
-						return el.id_hardware == '{{$id_hardware}}';
+						return el.id_hardware == '{{ $id_hardware }}';
 					});
 
 					// Assign ID KOLAM
