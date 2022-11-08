@@ -200,18 +200,18 @@
 			$.each(value, function(index, value) {
 				if (value && value.id_hardware === '{{ $id_hardware }}' && value.id_kolam ===
 					'{{ $id_kolam }}') {
-					console.log(index);
+					// console.log(index);
 					htmls.push('<tr>\
-															                                <td>' + no++ + '</td>\
-															                                <td>' + value.time + ', ' + value.date + ' </td>\
-															                                <td>' + value.ph + '</td>\
-															                                <td>' + value.salinitas + '</td>\
-															                                <td>' + value.suhu + '</td>\
-															                                <td>' + value.do +
+																			                                <td>' + no++ + '</td>\
+																			                                <td>' + value.time + ', ' + value.date + ' </td>\
+																			                                <td>' + value.ph + '</td>\
+																			                                <td>' + value.salinitas + '</td>\
+																			                                <td>' + value.suhu + '</td>\
+																			                                <td>' + value.do +
 						'</td>\
-															                                <td><a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' +
+																			                                <td><a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' +
 						index + '">Delete</a></td>\
-															                            </tr>');
+																			                            </tr>');
 				}
 				lastId = index;
 			});
@@ -226,140 +226,156 @@
 		});
 
 		// graph
-		database.ref("alat").on("value", function(snapshot) {
+		database.ref("alat").limitToLast(10).on("value", function(snapshot) {
 			var value = snapshot.val();
 
+            var ph = [];
+            var suhu = [];
+            var salinitas = [];
+            var Do = [];
+            var time = [];
+
 			$.each(value, function(index, value) {
-				if (value && value.id_hardware === '{{ $id_hardware }}' && value.id_kolam ===
-					'{{ $id_kolam }}') {
-					var ph = [];
-					var suhu = [];
-					var salinitas = [];
-					var Do = [];
-					var time = [];
-
-					$.each(value, function(index, value) {
-						if (value && value.id_hardware === '{{ $id_hardware }}' && value.id_kolam === '{{ $id_kolam }}') {
-							ph.push(value.ph);
-							suhu.push(value.suhu);
-							salinitas.push(value.salinitas);
-							Do.push(value.Do);
-							time.push(value.time.getHours());
-						}
-					});
-
-					// var phChart = document.getElementById('ph-chart').getContext('2d');
-					new Chart($('#ph-chart'), {
-						type: 'line',
-						data: {
-							labels: time,
-							datasets: [{
-								label: 'PH',
-								data: ph,
-								backgroundColor: [
-									'rgba(255, 99, 132, 0.2)',
-								],
-								borderColor: [
-									'rgba(255, 99, 132, 1)',
-								],
-								borderWidth: 1
-							}]
-						},
-						options: {
-							scales: {
-								x: {
-									display: true,
-									title: {
-										display: true,
-										text: 'Time'
-									}
-								},
-								y: {
-									beginAtZero: true
-								}
-							}
-						}
-					});
-
-					// var ctx = document.getElementById('suhu-chart').getContext('2d');
-					new Chart($('#suhu-chart'), {
-						type: 'line',
-						data: {
-							labels: time,
-							datasets: [{
-								label: 'Suhu',
-								data: suhu,
-								backgroundColor: [
-									'rgba(255, 99, 132, 0.2)',
-								],
-								borderColor: [
-									'rgba(255, 99, 132, 1)',
-								],
-								borderWidth: 1
-							}]
-						},
-						options: {
-							scales: {
-								y: {
-									beginAtZero: true
-								}
-							}
-						}
-					});
-
-					// var ctx = document.getElementById('salinitas-chart').getContext('2d');
-					new Chart($('#salinitas-chart'), {
-						type: 'line',
-						data: {
-							labels: time,
-							datasets: [{
-								label: 'Salinitas',
-								data: salinitas,
-								backgroundColor: [
-									'rgba(255, 99, 132, 0.2)',
-								],
-								borderColor: [
-									'rgba(255, 99, 132, 1)',
-								],
-								borderWidth: 1
-							}]
-						},
-						options: {
-							scales: {
-								y: {
-									beginAtZero: true
-								}
-							}
-						}
-					});
-
-					// var ctx = document.getElementById('do-chart').getContext('2d');
-					new Chart($('#do-chart'), {
-						type: 'line',
-						data: {
-							labels: time,
-							datasets: [{
-								label: 'DO',
-								data: Do,
-								backgroundColor: [
-									'rgba(255, 99, 132, 0.2)',
-								],
-								borderColor: [
-									'rgba(255, 99, 132, 1)',
-								],
-								borderWidth: 1
-							}]
-						},
-						options: {
-							scales: {
-								y: {
-									beginAtZero: true
-								}
-							}
-						}
-					});
+                if (value && value.id_hardware === '{{ $id_hardware }}' && value.id_kolam === '{{ $id_kolam }}') {
+                    ph.push(value.ph);
+                    suhu.push(value.suhu);
+                    salinitas.push(value.salinitas);
+                    Do.push(value.do);
+                    time.push(value.time);
+					console.log(ph, suhu, salinitas, Do, time)
 				}
 			})
+            // var phChart = document.getElementById('ph-chart').getContext('2d');
+            new Chart($('#ph-chart'), {
+                type: 'line',
+                data: {
+                    labels: time,
+                    datasets: [{
+                        label: 'PH',
+                        data: ph,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // var ctx = document.getElementById('suhu-chart').getContext('2d');
+            new Chart($('#suhu-chart'), {
+                type: 'line',
+                data: {
+                    labels: time,
+                    datasets: [{
+                        label: 'Suhu',
+                        data: suhu,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // var ctx = document.getElementById('salinitas-chart').getContext('2d');
+            new Chart($('#salinitas-chart'), {
+                type: 'line',
+                data: {
+                    labels: time,
+                    datasets: [{
+                        label: 'Salinitas',
+                        data: salinitas,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // var ctx = document.getElementById('do-chart').getContext('2d');
+            new Chart($('#do-chart'), {
+                type: 'line',
+                data: {
+                    labels: time,
+                    datasets: [{
+                        label: 'DO',
+                        data: Do,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
 		})
 
 		// delete modal
