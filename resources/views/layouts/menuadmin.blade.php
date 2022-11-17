@@ -9,6 +9,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Favicon icon -->
@@ -48,111 +51,35 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar" data-navbarbg="skin5">
-            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                <div class="navbar-header" data-logobg="skin5">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="#">
-                        <!-- Logo icon -->
-                        <b class="logo-icon">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <!-- <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                            <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> -->
-                            <h4>ADMIN</h4>
-                        </b>
-                        <!--End Logo icon -->
+    <div id="main-wrapper" data-layout="horizontal" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <nav class="navbar navbar-expand-md navbar-dark bg-info ">
+            <a class="navbar-brand" href="#">  Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav ml-auto">
+                    
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown" id="nama-user"> </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="email-user"> </a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn ml-2 btn-close-white" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Log Out</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
 
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin6">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <!-- User Profile-->
-                        <li>
-                            <!-- User Profile-->
-                            <div class="user-profile d-flex no-block dropdown m-t-20">
-                                <div class="user-pic"><img src="assets/images/users/1.jpg" alt="users" class="rounded-circle" width="40" /></div>
-                                <div class="user-content hide-menu m-l-10">
-
-                                    <a href="#" class="" id="Userdd" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-decoration: none">
-                                        <h5 class="m-b-0 user-name font-medium">Admin <i class="fa fa-angle-down"></i></h5>
-                                        <span class="op-5 user-email">admin@admin.com</span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="Userdd">
-
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-power-off m-r-5 m-l-5"></i>
-                                            Logout
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-
-                                                @csrf
-                                            </form>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End User Profile-->
-                        </li>
-                        <!-- User Profile-->
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('datanelayan') }}" aria-expanded="false" style="text-decoration: none">
-
-                                <i class="mdi mdi-plus"></i>
-                                <span class="hide-menu">Tambah User</span>
-                            </a>
-                        </li>
-                        {{-- <li class="sidebar-item">
-
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('monitortambak') }}" aria-expanded="false" style="text-decoration: none">
-
-                                <i class="mdi mdi-water"></i>
-                                <span class="hide-menu">Tambak</span>
-                            </a>
-                        </li> --}}
-                    </ul>
-
-                </nav>
-                <!-- End Sidebar navigation -->
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
             </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
+        </nav>
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Container fluid  -->
