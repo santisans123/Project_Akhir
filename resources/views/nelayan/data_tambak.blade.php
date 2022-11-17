@@ -1,15 +1,6 @@
 @extends('layouts.menunelayan')
 
 @section('content')
-	<!-- Bread crumb and right sidebar toggle -->
-	<div class="page-breadcrumb">
-		<div class="row align-items-start">
-			<div class="col">
-				<h2 class="page-title mb-3">Data Tambak</h2>
-			</div>
-		</div>
-	</div>
-	<!-- End Bread crumb and right sidebar toggle -->
 
 	<div class="row">
 		<div class="col-12">
@@ -21,24 +12,8 @@
 					id="btn-show-add-modal">Tambah Tambak</button>
 			</div>
 
-			<div class="card">
-				<div class="card-body">
-					<table id="tabledata" class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">No</th>
-								<th scope="col">ID Alat</th>
-								<th scope="col">Alamat</th>
-								<th scope="col">Nama Tambak</th>
-								<th scope="col">Action</th>
-							</tr>
-						</thead>
-						<tbody id="table-list">
-
-						</tbody>
-					</table>
-
-				</div>
+			<div class="card-body">
+				<div id="cards" class="row row-cols-1 row-cols-md-4 g-4"></div>
 			</div>
 		</div>
 	</div>
@@ -160,32 +135,40 @@
 
 			$.each(value, function(index, value) {
 				if (value && value.user_id === "{{ Session::get('uid') }}") {
-					htmls.push('<tr>\
-	                            <td>' + no++ + '</td>\
-	                            <td>' + value.id_hardware + '</td>\
-	                            <td>' + value.alamat + '</td>\
-	                            <td>' + value.namatambak + '</td>\
-	                            <td>\
-	                            <a class="btn btn-primary mt-1" href="datakolam/' + value.id_hardware +
-						'" >Detail Tambak</a>\
-	                            <a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success mt-1 update-post" data-id="' +
-						index +
-						'">Edit</a>\
-	                            <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger mt-1 delete-data" data-id="' +
-						index + '">Hapus</a></td>\
-	                        </tr>');
-
+					console.log(value)
+					htmls.push(`<div class="col">
+								<div class="card h-100">
+									<div class="card-body" style="padding: 2em;">
+										<h5 class="card-title mb-4" style="font-weight: bold;">${value.id_hardware}</h5>
+										<p class="card-subtitle" style="color:black; font-weight:600 ">Alamat : ${value.alamat} meter</p>
+										<p class="card-subtitle"style="color:black; font-weight:600 ">Nama Tambak: ${value.namatambak} meter</p>
+										<p class="card-subtitle" style="color:black; font-weight:600 ">Kedalaman : ${value.kedalaman} meter</p>
+										<div class="mt-4">
+                                            <a class="btn btn-sm mt-1 btn-primary" href="datakolam/${value.id_hardware}" >Detail Kolam</a>
+											<a
+												data-bs-toggle="modal"
+												data-bs-target="#update-modal"
+												class="btn btn-sm btn-success mt-1 update-post"
+												data-id="${index}"
+											>
+												Edit
+											</a>
+											<a
+												data-bs-toggle="modal"
+												data-bs-target="#delete-modal"
+												class="btn btn-sm btn-danger mt-1 delete-data"
+												data-id="${index}"
+											>
+												Hapus
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>`);
 				}
 				lastId = index;
 			});
-			$('#table-list').html(htmls);
-
-			var table = $('#tabledata').DataTable({
-				responsive: true,
-				stateSave: true,
-				"bDestroy": true
-			});
-			new $.fn.dataTable.FixedHeader(table);
+			document.getElementById('cards').innerHTML = htmls.join('');
 		});
 
 		let isClickedBtnShowModal = false;
