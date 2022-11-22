@@ -195,25 +195,34 @@
 		// get post data
 		// get desc ordered data
 
-		database.ref("alat").orderByChild('id').on('value', function(snapshot) {
+		database.ref("alat").on('value', function(snapshot) {
 			var value = snapshot.val();
 			var htmls = [];
 			var no = 1;
-			$.each(value, function(index, value) {
-				if (value && value.id_hardware === '{{ $id_hardware }}' && value.id_kolam ===
-					'{{ $id_kolam }}') {
+
+			// reverse data
+			var keys = Object.keys(value);
+			var reverseKeys = keys.reverse();
+
+			$.each(reverseKeys, function(index, key) {
+				if (value[key] && value[key].id_hardware === '{{ $id_hardware }}' && value[key].id_kolam === '{{ $id_kolam }}') {
 					// console.log(index);
-					htmls.push('<tr>\
-																				                                <td>' + no++ + '</td>\
-																				                                <td>' + value.time + ', ' + value.date + ' </td>\
-																				                                <td>' + value.ph + '</td>\
-																				                                <td>' + value.salinitas + '</td>\
-																				                                <td>' + value.suhu + '</td>\
-																				                                <td>' + value.do +
-						'</td>\
-																				                                <td><a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="' +
-						index + '">Delete</a></td>\
-																				                            </tr>');
+					htmls.push(`
+						<tr>
+							<td>${no}</td>
+							<td>${value[key].time} ${value[key].date}</td>
+							<td>${value[key].ph}</td>
+							<td>${value[key].salinitas}</td>
+							<td>${value[key].suhu}</td>
+							<td>${value[key].do}</td>
+							<td>
+								<a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger delete-data" data-id="${index}">
+									Delete
+								</a>
+							</td>
+						</tr>
+					`);
+					no++;
 				}
 				lastId = index;
 			});
@@ -245,7 +254,6 @@
 					salinitas.push(value.salinitas);
 					Do.push(value.do);
 					time.push(value.time);
-					console.log(ph, suhu, salinitas, Do, time)
 				}
 			})
 			// var phChart = document.getElementById('ph-chart').getContext('2d');
