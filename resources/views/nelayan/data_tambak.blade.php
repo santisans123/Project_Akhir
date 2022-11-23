@@ -23,21 +23,7 @@
 
 			<div class="card">
 				<div class="card-body">
-					<table id="tabledata" class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">No</th>
-								<th scope="col">ID Alat</th>
-								<th scope="col">Alamat</th>
-								<th scope="col">Nama Tambak</th>
-								<th scope="col">Action</th>
-							</tr>
-						</thead>
-						<tbody id="table-list">
-
-						</tbody>
-					</table>
-
+                    <div id="cards" class="row row-cols-1 row-cols-md-3 g-4"></div>
 				</div>
 			</div>
 		</div>
@@ -156,36 +142,46 @@
 		database.ref("tambak").on('value', function(snapshot) {
 			var value = snapshot.val();
 			var htmls = [];
-			var no = 1;
 
 			$.each(value, function(index, value) {
 				if (value && value.user_id === "{{ Session::get('uid') }}") {
-					htmls.push('<tr>\
-	                            <td>' + no++ + '</td>\
-	                            <td>' + value.id_hardware + '</td>\
-	                            <td>' + value.alamat + '</td>\
-	                            <td>' + value.namatambak + '</td>\
-	                            <td>\
-	                            <a class="btn btn-primary mt-1" href="datakolam/' + value.id_hardware +
-						'" >Detail Tambak</a>\
-	                            <a data-bs-toggle="modal" data-bs-target="#update-modal" class="btn btn-success mt-1 update-post" data-id="' +
-						index +
-						'">Edit</a>\
-	                            <a data-bs-toggle="modal" data-bs-target="#delete-modal" class="btn btn-danger mt-1 delete-data" data-id="' +
-						index + '">Hapus</a></td>\
-	                        </tr>');
-
+					htmls.push(`
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">${value.id_hardware}</h5>
+                                        <p>Nama Tambak : ${value.namatambak}</p>
+                                        <p>Alamat : ${value.alamat}</p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <a class="btn btn-sm mt-1 btn-primary" href="datakolam/${value.id_hardware}">Detail Tambak</a>
+                                        <a
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#update-modal"
+                                            class="btn btn-sm btn-success mt-1 update-post"
+                                            data-id="${index}"
+                                        >
+                                            Edit
+                                        </a>
+                                        <a
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#delete-modal"
+                                            class="btn btn-sm btn-danger mt-1 delete-data"
+                                            data-id="${index}"
+                                        >
+                                            Hapus
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
 				}
 				lastId = index;
 			});
-			$('#table-list').html(htmls);
 
-			var table = $('#tabledata').DataTable({
-				responsive: true,
-				stateSave: true,
-				"bDestroy": true
-			});
-			new $.fn.dataTable.FixedHeader(table);
+            document.getElementById('cards').innerHTML = htmls.join('');
 		});
 
 		let isClickedBtnShowModal = false;
