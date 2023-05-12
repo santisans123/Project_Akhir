@@ -3,12 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <title>Aquaculture Pens</title>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('style/assets/aqua.png')}}">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="{{asset('style/assets/favicon.ico')}}" />
         <!-- Bootstrap Icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Google fonts-->
@@ -32,17 +32,15 @@
     <body class="antialiased">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Aquaculture</a>
+                <a class="navbar-brand" href="#">Aquaculture</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link" href="#about">Tentang Kami</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Layanan</a></li>
                         {{-- <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li> --}}
-
                         <li class="nav-item"><a class="nav-link" href="#contact">Hubungi kami</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Buku Panduan</a></li>        
-
+                        <li class="nav-item"><a class="nav-link" href="https://drive.google.com/file/d/1444K4NnvsuMPXdyUX_CYxe1OpGGXpI7G/view?usp=sharing" target="_blank">Buku Panduan</a></li>
                     </ul>
                 </div>
 
@@ -54,12 +52,12 @@
                         @else
                             <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Log in</a></li>
 
-                        @endauth   
+                        @endauth
                     </ul>
                 </div>
                 @endif
 
-                
+
             </div>
         </nav>
         <!-- Masthead-->
@@ -73,12 +71,38 @@
                     <div class="col-lg-8 align-self-baseline">
                         <p class="text-white-75 mb-5">Sebuah platform digital yang dibangun dengan tujuan untuk mendukung penguatan sektor budidaya perairan (akuakultur) Indonesia yang maju dan mandiri.</p>
                         {{-- <a class="btn btn-light btn-xl" href="#contact">Gabung</a> --}}
-
                         <a class="btn btn-info btn-xl" href="#about">Baca Lainnya</a>
                     </div>
                 </div>
             </div>
         </header>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">Web Pendukung Petambak</h2>
+                <hr class="divider" />
+                <div class="row ">
+                    <div class="col-sm text-center">
+                        <a target="_blank" href="https://data.noaa.gov/onestop/collections?q=(%22GOES-18%22%20OR%20%22GOES-17%22)%20OR%20(%22GOES-16%22%20OR%20%22GOES-R%22)">
+                            <div class="mt-5">
+                                <div class="mb-2"><i class="bi-cloud fs-1 text-primary"></i></div>
+                                <h3 class="h4 mb-2">Pusat Data Iklim Indonesia</h3>
+                                <p class="text-muted mb-0">Menampilkan data cuaca dan iklim historis nasional. Terdiri dari pengukuran suhu, curah hujan, angin, dan derajat harian yang dikontrol kualitasnya setiap hari, bulanan, musiman, dan tahunan serta data radar dan Iklim Normal 30 tahun.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm text-center">
+                        <a target="_blank" href="https://earth.nullschool.net/#current/ocean/surface/currents/winkel3=122.66,-4.01,2426/loc=121.319,-2.626">
+                            <div class="mt-5">
+                                <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
+                                <h3 class="h4 mb-2">Peta Angin dan Cuaca Global</h3>
+                                <p class="text-muted mb-0">Melihat kondisi angin, cuaca, lautan, dan polusi saat ini, seperti yang diperkirakan oleh superkomputer, pada peta animasi interaktif. Diperbarui setiap tiga jam.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- About-->
         <section class="page-section bg-primary" id="about">
             <div class="container px-4 px-lg-5">
@@ -86,13 +110,7 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="text-white mt-0">Tentang kami</h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">TISASforINA adalah sebuah platform digital yang 
-                            dibangun dengan tujuan untuk mendukung penguatan sektor budidaya perairan 
-                            (akuakultur) Indonesia yang maju dan mandiri. Platform ini dibangun oleh tim Riset 
-                            Grup Aquaculture Engineering Applied Technology (ACE App-Tech) Politeknik 
-                            Elektronika Negeri Surabaya dan didanai oleh Lembaga Pengelolaan Dana Pendidikan 
-                            (LPDP) yang dikelola oleh Direktorat Jenderal Pendidikan Vokasi Kementerian 
-                            Pendidikan dan Kebudayaan, Riset dan Teknologi, Republik Indonesia.</p>
+                        <p class="text-white-75 mb-4">TISASforINA adalah sebuah platform digital yang dibangun dengan tujuan untuk mendukung penguatan sektor budidaya perairan (akuakultur) Indonesia yang maju dan mandiri. Platform ini dibangun oleh tim Riset Grup Aquacultural Engineering Applied Technology (ACE App-Tech) Politeknik Elektronika Negeri Surabaya dan didanai oleh Direktorat Jenderal Pendidikan Vokasi, Kementerian Pendidikan dan Kebudayaan, Riset dan Teknologi, Republik Indonesia yang dikelola oleh Lembaga Pengelolaan Dana Pendidikan (LPDP) .</p>
                     </div>
                 </div>
                 <div class="container px-4 px-lg-5 text-white" >
@@ -155,7 +173,6 @@
                 <h2 class="mb-4">Ayo gabung dengan kami</h2>
                 <p class="text-white-75 mb-4">hubungi kontak kami untuk join.</p>
                 {{-- <a class="btn btn-light btn-xl" href="#contact">gabung</a> --}}
-
             </div>
         </section>
         <!-- Contact-->
@@ -165,9 +182,7 @@
                     <div class="col-lg-8 col-xl-6 text-center">
                         <h2 class="mt-0">Hubungi kami</h2>
                         <hr class="divider" />
-
                         <p class="text-muted mb-5">Kirim pesan anda</p>
-
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
@@ -214,9 +229,7 @@
                                     <div class="fw-bolder">Form submission successful!</div>
                                     To activate this form, sign up at
                                     <br />
-
                                     <a href="/">Berhasil</a>
-
                                 </div>
                             </div>
                             <!-- Submit error message-->
@@ -229,24 +242,28 @@
                         </form>
                     </div>
                 </div>
-
             </div>
             <div class="container" >
                 <h4 class="d-flex justify-content-center font-bold" style="margin-top: 7rem"> Featured Sponsors</h4>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 mt-4 text-center mb-2 mb-lg-0">
-                        <img src="{{asset('style/assets/pens.png')}}" alt="" style="max-width: 20%; opacity: 0.6; ">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-2 col-md-2 mt-4 text-center mb-2 mb-lg-0">
+                        <img src="{{asset('style/assets/pens.png')}}" alt="" style="max-width: 50%; opacity: 0.6; ">
                     </div>
-                    <div class="col-lg-4 mt-4 text-center mb-2 mb-lg-0">
-                        <img src="{{asset('style/assets/aqua.png')}}" alt="" style="max-width: 20%; opacity: 0.6">
+                    <div class="col-lg-2 col-md-2 mt-4 text-center mb-2 mb-lg-0">
+                        <img src="{{asset('style/assets/aqua.png')}}" alt="" style="max-width: 50%; opacity: 0.6">
+                    </div>
+                    <div class="col-lg-2 col-md-2 mt-4 text-center mb-2 mb-lg-0">
+                        <img src="./assets/images/lpdp.png" alt="" style="max-width: 50%; opacity: 0.6; ">
+                    </div>
+                    <div class="col-lg-2 col-md-2 mt-4 text-center mb-2 mb-lg-0">
+                        <img src="./assets/images/kemendikbud.png" alt="" style="max-width: 50%; opacity: 0.6">
                     </div>
                 </div>
             </div>
-            
+
         </section>
         <!-- Footer-->
         <footer class="bg-light py-4">
-
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Aquaculture</div></div>
         </footer>
 
