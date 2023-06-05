@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/city', function () {
+    return view('/prediction/city');
+});
+
 
 Route::get('/table', function () {
     return view('table');
