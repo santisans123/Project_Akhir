@@ -22,8 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/city', function () {
-    return view('/prediction/city');
+Route::get('city', function () {
+    return view('city');
 });
 
 

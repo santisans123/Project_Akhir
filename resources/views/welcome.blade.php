@@ -41,7 +41,7 @@
                         {{-- <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li> --}}
                         <li class="nav-item"><a class="nav-link" href="#contact">Hubungi kami</a></li>
                         <li class="nav-item"><a class="nav-link" href="https://drive.google.com/file/d/1444K4NnvsuMPXdyUX_CYxe1OpGGXpI7G/view?usp=sharing" target="_blank">Buku Panduan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="city">Prediksi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('city') }}">Prediksi</a></li>
                     </ul>
                 </div>
 
