@@ -26,6 +26,9 @@ Route::get('city', function () {
     return view('city');
 });
 
+Route::get('/prediksi/{city_id}', function ($city_id) {
+    return view('/input_prediksi', ['city_id' => $city_id]);
+})->name('prediksi');
 
 Route::get('/table', function () {
     return view('table');

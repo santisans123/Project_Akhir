@@ -439,35 +439,35 @@
     <section class="page-section">
         <div class="container px-4 px-lg-5">
             <div class="row">
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;" >
+                <div class="card mx-3 my-3" style="width: 20rem;" >
                     <img src="https://i.pinimg.com/736x/a0/ca/d7/a0cad795105a1baa88c129a311b7fb39.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Bali</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
+                        <a class="btn btn-sm mt-1 btn-primary" href="prediksi/1" >Input Data</a>
                     </div>
                 </div>
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
+                <div class="card mx-3 my-3" style="width: 20rem;">
                     <img src="https://www.datalpse.com/files/images/kldi/62b575a96e8ab_300x300.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Probolinggo</h5>
                         <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
                     </div>
                 </div>
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
+                <div class="card mx-3 my-3" style="width: 20rem; ">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDiPsPAEj2ErRn-Op2PMzrzaYWWY9B_xKp3xZ1rZcO7xC1E3FokEoLcPK60aPXDepuu_Y&usqp=CAU" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Bulukumba</h5>
                         <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
                     </div>
                 </div>
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
+                <div class="card mx-3 my-3" style="width: 20rem;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Lambang_Kabupaten_Gresik.png" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Gresik</h5>
                         <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
                     </div>
                 </div>
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
+                <div class="card mx-3 my-3" style="width: 20rem; ">
                     <img src="https://garutkab.go.id/uploads/images/Logo_Garut_Jadi3.png" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Garut</h5>

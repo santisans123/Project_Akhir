@@ -407,72 +407,38 @@
     </style>
 </head>
 
-<body class="antialiased bg-info" >
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#">Aquaculture</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#services">Layanan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">Tentang Kami</a></li>
-                    {{-- <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li> --}}
-                    <li class="nav-item"><a class="nav-link" href="#contact">Hubungi kami</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://drive.google.com/file/d/1444K4NnvsuMPXdyUX_CYxe1OpGGXpI7G/view?usp=sharing" target="_blank">Buku Panduan</a></li>
-                </ul>
-            </div>
+<body class="antialiased bg-info">
 
-            @if(Route::has('login'))
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    @auth
-                    <li class="nav-item"><a class="nav-link" href="{{url('datatambak')}}">Darsboard</a></li>
-                    @else
-                    <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Log in</a></li>
-
-                    @endauth
-                </ul>
-            </div>
-            @endif
-        </div>
-    </nav>
     <section class="page-section">
+        <div class="container mb-4 px-lg-5">
+            <a  href="{{ url('city') }}"><button type="submit" class="btn btn-secondary">kembali</button></a>
+        </div>
         <div class="container px-4 px-lg-5">
+
             <div class="row">
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;" >
-                    <img src="https://i.pinimg.com/736x/a0/ca/d7/a0cad795105a1baa88c129a311b7fb39.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Bali</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
-                    </div>
+                <div class="card p-4" style="width: 40rem; margin-right: 2rem; margin-bottom: 2rem;">
+                    <form>
+                        <div class="form-group my-2">
+                            <label for="exampleInputPassword1">Suhu</label>
+                            <input type="number" class="form-control" id="suhu" placeholder="Masukkan Suhu">
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="exampleInputPassword1">Salinitas</label>
+                            <input type="number" class="form-control" id="salinitas" placeholder="Masukkan Salinitas">
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="exampleInputPassword1">Ph</label>
+                            <input type="number" class="form-control" id="ph" placeholder="Masukkan Ph">
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="exampleInputPassword1">DO</label>
+                            <input type="number" class="form-control" id="do" placeholder="Masukkan Dissolved Oxygen(DO)">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
-                    <img src="https://www.datalpse.com/files/images/kldi/62b575a96e8ab_300x300.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Probolinggo</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDiPsPAEj2ErRn-Op2PMzrzaYWWY9B_xKp3xZ1rZcO7xC1E3FokEoLcPK60aPXDepuu_Y&usqp=CAU" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Bulukumba</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Lambang_Kabupaten_Gresik.png" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Gresik</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
-                    <img src="https://garutkab.go.id/uploads/images/Logo_Garut_Jadi3.png" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Garut</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
-                    </div>
+                <div class="card p-4" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
+                    <h5 class="card-title">Hasil Prediksi</h5>
                 </div>
             </div>
     </section>
