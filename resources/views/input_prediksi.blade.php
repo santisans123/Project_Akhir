@@ -411,24 +411,24 @@
 
     <section class="page-section">
         <div class="container mb-4 px-lg-5">
-            <a  href="{{ url('city') }}"><button type="submit" class="btn btn-secondary">kembali</button></a>
+            <a href="{{ url('city') }}"><button type="submit" class="btn btn-secondary">kembali</button></a>
         </div>
         <div class="container px-4 px-lg-5">
 
             <div class="row">
                 <div class="card p-4" style="width: 40rem; margin-right: 2rem; margin-bottom: 2rem;">
-                    <form>
+                    <form action="" id="prediksiForm">
                         <div class="form-group my-2">
                             <label for="exampleInputPassword1">Suhu</label>
                             <input type="number" class="form-control" id="suhu" placeholder="Masukkan Suhu">
                         </div>
                         <div class="form-group my-2">
-                            <label for="exampleInputPassword1">Salinitas</label>
-                            <input type="number" class="form-control" id="salinitas" placeholder="Masukkan Salinitas">
-                        </div>
-                        <div class="form-group my-2">
                             <label for="exampleInputPassword1">Ph</label>
                             <input type="number" class="form-control" id="ph" placeholder="Masukkan Ph">
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="exampleInputPassword1">Salinitas</label>
+                            <input type="number" class="form-control" id="salinitas" placeholder="Masukkan Salinitas">
                         </div>
                         <div class="form-group my-2">
                             <label for="exampleInputPassword1">DO</label>
@@ -439,9 +439,14 @@
                 </div>
                 <div class="card p-4" style="width: 20rem; margin-right: 2rem; margin-bottom: 2rem;">
                     <h5 class="card-title">Hasil Prediksi</h5>
+                    <div id="result"></div>
                 </div>
+
+                </form>
             </div>
     </section>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- SimpleLightbox plugin JS-->
@@ -453,6 +458,32 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+    <script>
+        let prediksiForm = document.getElementById("prediksiForm");
+
+        let suhu = document.getElementById("suhu");
+        let do_oksigen = document.getElementById("do");
+        let salinitas = document.getElementById("salinitas");
+        let ph = document.getElementById("ph");
+
+        var hasil;
+
+        prediksiForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            if (suhu.value == "" || ph.value == "" || do_oksigen.value == "" || salinitas.value == "") {
+                alert("Ensure you input a value in both fields!");
+            } else {
+                // perform operation with form input
+
+                hasil = (suhu.value * ph.value * salinitas.value * do_oksigen.value);
+                var list = document.createElement('ul');
+                list.innerHTML = "<h4>" + hasil + "</h4>";
+                document.getElementById("result").appendChild(list)
+            }
+        });
+    </script>
 </body>
 
 </html>
