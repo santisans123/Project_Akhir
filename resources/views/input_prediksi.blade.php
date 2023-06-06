@@ -434,6 +434,7 @@
                             <label for="exampleInputPassword1">DO</label>
                             <input type="number" class="form-control" id="do" placeholder="Masukkan Dissolved Oxygen(DO)">
                         </div>
+                        <input type="hidden" class="form-control" value="{{ $city_id }}" name="city_id" id="city_id">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
@@ -462,6 +463,7 @@
     <script>
         let prediksiForm = document.getElementById("prediksiForm");
 
+        let city_id = document.getElementById("city_id");
         let suhu = document.getElementById("suhu");
         let do_oksigen = document.getElementById("do");
         let salinitas = document.getElementById("salinitas");
@@ -477,7 +479,7 @@
             } else {
                 // perform operation with form input
 
-                hasil = (suhu.value * ph.value * salinitas.value * do_oksigen.value);
+                hasil = (suhu.value * ph.value * salinitas.value * do_oksigen.value * city_id.value);
                 var list = document.createElement('ul');
                 list.innerHTML = "<h4>" + hasil + "</h4>";
                 document.getElementById("result").appendChild(list)

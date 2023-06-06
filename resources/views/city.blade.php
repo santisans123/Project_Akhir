@@ -450,28 +450,28 @@
                     <img src="https://www.datalpse.com/files/images/kldi/62b575a96e8ab_300x300.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Probolinggo</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
+                        <a class="btn btn-sm mt-1 btn-primary" href="prediksi/2" >Input Data</a>
                     </div>
                 </div>
                 <div class="card mx-3 my-3" style="width: 20rem; ">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDiPsPAEj2ErRn-Op2PMzrzaYWWY9B_xKp3xZ1rZcO7xC1E3FokEoLcPK60aPXDepuu_Y&usqp=CAU" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Bulukumba</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
+                        <a class="btn btn-sm mt-1 btn-primary" href="prediksi/3" >Input Data</a>
                     </div>
                 </div>
                 <div class="card mx-3 my-3" style="width: 20rem;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Lambang_Kabupaten_Gresik.png" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Gresik</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
+                        <a class="btn btn-sm mt-1 btn-primary" href="prediksi/4" >Input Data</a>
                     </div>
                 </div>
                 <div class="card mx-3 my-3" style="width: 20rem; ">
                     <img src="https://garutkab.go.id/uploads/images/Logo_Garut_Jadi3.png" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Garut</h5>
-                        <a class="btn btn-sm mt-1 btn-primary" href="" >Input Data</a>
+                        <a class="btn btn-sm mt-1 btn-primary" href="prediksi/5" >Input Data</a>
                     </div>
                 </div>
             </div>
